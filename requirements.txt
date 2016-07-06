@@ -10,6 +10,7 @@ django-registration-redux==1.4
 django-star-ratings==0.5.1
 django-summernote==0.8.5
 django-taggit==0.20.1
+gunicorn==19.6.0
 html5lib==0.9999999
 lxml==3.6.0
 pycparser==2.14
