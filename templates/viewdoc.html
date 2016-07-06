@@ -1,0 +1,81 @@
+{% extends "header.html" %} {% load bootstrap3 %}
+{% block content %}
+<br>
+<br>
+<br> 
+<br>
+<br>
+<div class="panel panel-default">
+    <div class="panel-body" id="body-container">
+        <div id="left_side_fields">
+            <form method="POST" action=''>{% csrf_token show_label=False %}
+                <a href="{% url 'newdoc' doc_id=doc_id %}"> <input type="button" id="newdoc" class="btn btn-default" name="newdoc" title="usar Doc"/></a>
+            </form>
+            <br/>
+            <br/>
+            <br/>
+            <label>Título</label> 
+            {{ title }}
+            <br />
+            <br />
+            <label>Descripción</label> 
+            {{ description }}
+            <br />
+            <br />
+            <label>Disponibilidad</label> 
+            {{ form.public.label }}
+            <br />
+            <br />
+            <label>Creador</label> 
+            {{ request.user }}
+            <br />
+            <br />
+            <label>Tags</label> 
+            {% for row in tags_data %}
+            {% for tag in row.tags.all %}
+            <span class="tag">{{ tag }}</span>
+            <br/>
+            {% endfor %}
+            {% endfor %}
+            <label>Comparte este Doc</label>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank">
+                <i class="fa fa-facebook-square fa-2x"></i>
+            </a>
+            <a href="https://plus.google.com/share?url={{ request.build_absolute_uri }}" target="_blank">
+                <i class="fa fa-google-plus-square fa-2x" style="color:#D34836"></i>
+            </a>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}" target="_blank">
+                <i class="fa fa-linkedin-square fa-2x" style="color:#007bb6"></i>
+            </a>
+            <a href="https://twitter.com/home?status=Hola%2C%20este%20documento%20puede%20interesarte.%20%23docsonline%20{{ request.build_absolute_uri }}" target="_blank">
+                <i class="fa fa-twitter-square fa-2x" style="color:#4099FF"></i>
+            </a>
+
+
+
+        </div>
+        <div id="rich_text">
+            {{ text|safe }}
+        </div>
+        <div id="side_fields">
+            <p>Comentarios</p>
+            <form method="POST" action="">{% csrf_token %}
+                {% bootstrap_form comment_form %}
+                <input type="submit" value="Postear" class="btn btn-default"></input>
+
+            </form>
+            <hr/>
+            {% for comment in comments reversed %}
+            <div class="comments">
+                <blockquote>
+                    <p>{{ comment.content }}</p>
+                <footer>via {{comment.user}} hace {{ comment.timestamp|timesince }}</footer>
+                </blockquote>
+            <hr/>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</form>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "header.html" %}
+<!DOCTYPE html>
+    <!-- Intro Section -->
+{% block content %}
+<html>
+    <body>
+        <br>
+        <br>
+        <br>
+        <section id="intro" class="intro-section">
+            <div class="container">
+                <h4 id="caption">Docs Online te permite crear y compartir plantillas reutilizables de documentos como contratos, cartas y formularios.</h4>
+                <section id="docsonline">
+                <h3 id="caption">...[_Documentos reutilizables_]...</h3>
+                {% if user.is_authenticated %}
+                <a href="{%url 'plantillas' %}" <button type="button" class="btn btn-success">Crear Doc</input></a><br/>
+                {% else %}
+                <a href="{% url 'registration_register' %}" <button type="button" class="btn btn-success">Crear cuenta gratis</input></a>
+                {% endif %}
+                </section><br/>
+            </div>
+            {% for b in user_data %} {% csrf_token %}
+        <table>
+            <tr>
+                <td>{{ b.nom_locador }}</td>
+                <td>{{ b.user }}</td>
+            </tr>
+        </table>
+        {% endfor %}
+        </section>
+        <!-- Services Section -->
+        <section id="services" class="services-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Services Section</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Contact Section</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
+{% endblock %}

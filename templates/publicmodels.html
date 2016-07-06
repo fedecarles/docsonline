@@ -1,0 +1,70 @@
+{% extends "header.html" %}
+{% load static %}
+{% load ratings %}
+{% block content %}
+<!DOCTYPE html>
+
+<html lang="es">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Docs Online</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	</head>
+	<body>
+    <br>
+    <br>
+    <br>
+<div class="container-fluid">
+		  <h1 class="page-header">Docs Públicos</h1>
+          <div class="tags">
+              {% for tag in tag_names %}
+              <a class="tag" href="{% url 'tagpagepublic' tag=tag %}">{{ tag }}</a>
+              {% endfor %}
+          </div >
+          <table class="table table-striped">
+          {% for row in public_detail %}
+              <tbody>
+                <tr>
+                    <blockquote>
+                    <td><a href="/viewdoc/{{ row.doc_id }}">{{ row.title }}</a><br/>
+                        {{ row.description }}<br/>
+                        <br/>
+                        <footer>Creado por {{ row.user }} el {{ row.creation_date }}<br><footer>
+                        {% for tag in row.tags.all %}
+                            <a class="tag" href="tag/{{ tag }}">{{ tag }}</a>
+                        {% endfor %}<br/>
+                    </td>
+                    </blockquote>
+                    <td>
+                        {% ratings row %}
+                    </td>
+                </tr>
+              </tbody>
+          {% endfor %}
+          </table>
+</div>
+
+<footer>
+  <p class="pull-left">©2016 Contratos Online</p>
+</footer>
+
+	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/scripts.js"></script>
+
+        <script type="text/javascript">
+        var rowCountloc = $('#loctable tr').length;
+        var rowCountcdoc = $('#cdoctable tr').length;
+        var qtyloc = $('#qtyloc');
+        var qtycdoc = $('#qtycdoc');
+        qtyloc[0].innerHTML += rowCountloc-1;
+        qtycdoc[0].innerHTML += rowCountcdoc-1;
+        </script>
+
+	</body>
+</html>
+{% endblock %}
+
+

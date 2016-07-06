@@ -1,0 +1,294 @@
+{% load i18n %}
+{% load static %}
+{% load ratings %}
+{% load bootstrap3 %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Contratos Online</title>
+
+    <!-- Bootstrap Core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/scrolling-nav.css"/> 
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <!-- Scrolling Nav JavaScript --> 
+    <script src="/static/js/scrolling-nav.js"></script>    <!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+
+    <!-- include summernote css/js-->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
+
+    <style type="text/css">
+        #caption{
+            float: right;
+            font-style: italic;
+            font-family: arial;
+            font-size: 20px;
+            color: white;
+            position: relative;
+            margin-top: 10%;
+            margin-right: 37%;
+
+        }
+        #docsonline{
+            float: right;
+            width: 500px;
+            height: 50px;
+            background: url('/static/images/docs_online.png');
+            background-repeat:no-repeat;
+            background-size: contain;
+        }
+        .table{
+            max-width: 50%;
+            margin: 0 auto;
+        }
+        .dropdown-menu{
+            text-align: center;
+        }
+        .btn-primary{
+            display: None;
+        }
+        .modal-backdrop {
+            z-index: 1020;
+        }
+        .modal-content{
+            width: 200px;
+        }
+        .modal-dialog{
+            margin-left: 45%;
+            margin-top: 300px;
+        }
+        #guardar{
+            float:right;
+            width: 50px;
+            height: 50px;
+            border: 0px;
+            background: url('/static/images/save.png');
+            background-repeat:no-repeat;
+            background-size: cover;
+        }
+        #guardar:hover{
+            background-color: #DEDEDE;
+        }
+        #reload{
+            margin-left: 20%;
+            width: 50px;
+            height: 50px;
+            border: 0px;
+            background: url('/static/images/update.png');
+            background-repeat:no-repeat;
+            background-size: cover;
+        }
+        #reload:hover{
+            background-color: #DEDEDE;
+        }
+        #delete{
+            float:left;
+            width: 50px;
+            height: 50px;
+            border: 0px;
+            background: url('/static/images/delete.png');
+            background-repeat:no-repeat;
+            background-size: cover;
+        }
+        #delete:hover{
+            background-color: #DEDEDE;
+        }
+        #newdoc{
+            float:right;
+            width: 50px;
+            height: 50px;
+            border: 0px;
+            background: url('/static/images/documents.png');
+            background-repeat:no-repeat;
+            background-size: cover;
+        }
+        #newdoc:hover{
+            background-color: #DEDEDE;
+        }
+        #id_content{
+            height: 50px;
+        }
+        blockquote{
+            font-size: 14px;
+        }
+        .tag{
+            border-radius: 25px;
+            background-color: #9B9B9B;
+            color: white;
+            text-decoration: none;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+         .tag:link{
+            text-decoration: none;
+        }
+         .tag:hover{
+            color: black;
+            background-color: #DEDEDE;
+        }
+        #left_side_fields{
+            padding: 10px;
+            float: left;
+            margin-right: 20px;
+            width: 20%;
+            border: solid 0.5px #A8A8A8;
+            border-radius: 5px;
+            position: relative;
+        }
+        #rich_text{
+            font-family: 'arial';
+            font-size: 12px;
+            width: 50%;
+            float: left;
+            position: relative;
+        }
+        #gendoc{
+            margin-left: 35%;
+            width: 50px;
+            height: 50px;
+            border: 0px;
+            background: url('/static/images/collect.png');
+            background-repeat:no-repeat;
+            background-size: cover;
+        }
+        #gendoc:hover{
+            background-color: #DEDEDE;
+        }
+        .field_label{
+            position: relative;
+        }
+        .field.form-control{
+            width: 200px;
+            height: 20px;
+        }
+        #side_fields{
+            padding: 10px;
+            float: left;
+            width: 20%;
+            margin-left: 20px;
+            border: solid 0.5px #A8A8A8;
+            border-radius: 5px;
+            position: relative;
+        }
+        .hl{
+            background-color: #D6D0C4;
+        }
+        #registration{
+            width: 25%;
+            text-align: center;
+        }
+        .btn-link{
+            margin-top: 10px;
+        }
+        .btn-block{
+            font-size: large;
+            font-weight: bold;
+        }
+        #intro{
+            background: url('static/images/main_contract.jpg');
+            background-size: 100%;
+            background-repeat:no-repeat;
+        }
+        #body-container{
+            max-width: 1400px;
+            margin: 0 auto;
+     }
+        button{
+            position: relative;
+            border: solid black;
+            margin: 2px;
+            border-radius:0 !important;
+            -webkit-border-radius:0 !important;
+    }
+        span.txt-hlt{
+            background-color: #f0f00b;
+    }
+        span.nombre{
+            background-color: transparent;
+    }
+        label{
+            display: table-cell; 
+    } 
+        input{
+            display: table-cell;
+    }
+        #page-top{
+            position: absolute;
+            overflow: scroll;
+        }
+    </style>
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.6";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="{% url 'home' %}">Inicio</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a class="page-scroll" href="#services">¿Cómo funciona?</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Contacto</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                    <div class="btn-group"> 
+                        <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ user.username }} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'plantillas' %}">Crear Doc</a></li>
+                            <li><a href="{% url 'misdocs' %}">Mis Docs</a></li>
+                            <li><a href="{% url 'publicmodels' %}">Docs Públicos</a></li>
+                            <li><a href="#">Perfil</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{% url 'auth_logout' %}?next=/">{% trans "Log out" %}</a></li>
+                        </ul>
+                    </div>
+
+                    {% else %}
+                    <button type="button" class="btn btn-link"/>
+                        <a href="{% url 'auth_login' %}">{% trans "Log in" %}</a>
+                    </button>
+                    {% endif %}
+                    
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

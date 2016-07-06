@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1052.3622"
+   height="744.09448"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="docs_online.svg">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient5420"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop5422" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3916"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3918" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3790"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3792" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="375"
+     inkscape:cy="520"
+     inkscape:document-units="px"
+     inkscape:current-layer="text3891"
+     showgrid="false"
+     inkscape:window-width="1916"
+     inkscape:window-height="1041"
+     inkscape:window-x="0"
+     inkscape:window-y="18"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-308.2677)">
+    <g
+       transform="translate(51.428571,157.14286)"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Comfortaa;-inkscape-font-specification:Comfortaa"
+       id="flowRoot2985">
+      <g
+         transform="translate(-51.428571,151.12484)"
+         style="line-height:125%;fill:#000000;font-family:Sans"
+         id="text3866">
+        <g
+           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+           id="text3891">
+          <path
+             d="m 82.282364,222.67819 30.937496,0 c 17.62494,1.1e-4 31.1718,4.38291 40.64063,13.14844 9.98428,9.09383 14.97646,21.79694 14.97656,38.10937 -1e-4,19.64066 -7.05478,34.00784 -21.16406,43.10157 -8.85945,5.67188 -20.67193,8.50781 -35.4375,8.50781 l -29.953126,0 0,-102.86719 m 12.65625,91.75781 16.242186,0 c 29.39055,2e-5 44.08585,-13.49997 44.08594,-40.5 -9e-5,-26.85929 -14.43757,-40.28896 -43.3125,-40.28906 l -17.015626,0 0,80.78906"
+             style="font-size:144px;font-variant:normal;font-stretch:normal;font-family:TakaoPGothic;-inkscape-font-specification:TakaoPGothic;stroke:#ffffff;stroke-opacity:1;fill:#ffffff;fill-opacity:1;stroke-width:13.80000000000000071;stroke-miterlimit:4;stroke-dasharray:none"
+             id="path3896"
+             inkscape:export-filename="/home/federico/Dropbox/contratos_online/src/static/images/docs_online.png"
+             inkscape:export-xdpi="90"
+             inkscape:export-ydpi="90" />
+          <path
+             d="m 220.8683,251.78757 c 10.12495,7e-5 18.65619,3.39851 25.59375,10.19531 7.12493,7.12506 10.68742,16.50005 10.6875,28.125 -8e-5,11.20315 -3.49226,20.32033 -10.47656,27.35156 -6.84381,6.79688 -15.44537,10.19531 -25.80469,10.19531 -10.35941,0 -18.89065,-3.35156 -25.59375,-10.05468 -7.03126,-7.03124 -10.54688,-16.33591 -10.54687,-27.91407 -1e-5,-11.3437 3.56249,-20.57806 10.6875,-27.70312 6.79685,-6.7968 15.28121,-10.19524 25.45312,-10.19531 m 0,9.49218 c -6.00004,7e-5 -11.08597,2.15632 -15.25781,6.46875 -5.2969,5.29693 -7.94533,12.6563 -7.94531,22.07813 -2e-5,9.28128 2.60154,16.52346 7.80468,21.72656 4.21872,4.21876 9.35153,6.32814 15.39844,6.32813 6.18745,10e-6 11.36713,-2.15624 15.53906,-6.46875 5.20306,-5.20311 7.80462,-12.56247 7.80469,-22.07813 -7e-5,-8.95308 -2.6485,-16.14838 -7.94531,-21.58594 -4.31256,-4.31243 -9.44536,-6.46868 -15.39844,-6.46875"
+             style="font-size:144px;font-variant:normal;font-stretch:normal;font-family:TakaoPGothic;-inkscape-font-specification:TakaoPGothic;stroke:#ffffff;stroke-opacity:1;fill:#ffffff;fill-opacity:1;stroke-width:13.80000000000000071;stroke-miterlimit:4;stroke-dasharray:none"
+             id="path3898"
+             inkscape:export-filename="/home/federico/Dropbox/contratos_online/src/static/images/docs_online.png"
+             inkscape:export-xdpi="90"
+             inkscape:export-ydpi="90" />
+          <path
+             d="m 338.14955,309.30319 c -6.51569,12.23438 -16.78131,18.35156 -30.79687,18.35156 -10.07816,0 -18.4219,-3.30468 -25.03125,-9.91406 -7.12501,-7.21873 -10.68751,-16.61716 -10.6875,-28.19531 -1e-5,-11.48433 3.56249,-20.85932 10.6875,-28.125 6.5156,-6.51555 14.71871,-9.77336 24.60937,-9.77344 13.9687,8e-5 23.90619,6.04695 29.8125,18.14063 l -9.98437,5.20312 c -4.17194,-8.85931 -10.64068,-13.289 -19.40625,-13.28906 -5.76567,6e-5 -10.75785,2.10944 -14.97657,6.32812 -5.29689,5.29693 -7.94533,12.56255 -7.94531,21.79688 -2e-5,8.71878 2.55467,15.63283 7.66406,20.74219 4.49997,4.50001 10.00778,6.75001 16.52344,6.75 8.85932,10e-6 15.539,-4.40624 20.03906,-13.21875 l 9.49219,5.20312"
+             style="font-size:144px;font-variant:normal;font-stretch:normal;font-family:TakaoPGothic;-inkscape-font-specification:TakaoPGothic;stroke:#ffffff;stroke-opacity:1;fill:#ffffff;fill-opacity:1;stroke-width:13.80000000000000071;stroke-miterlimit:4;stroke-dasharray:none"
+             id="path3900"
+             inkscape:export-filename="/home/federico/Dropbox/contratos_online/src/static/images/docs_online.png"
+             inkscape:export-xdpi="90"
+             inkscape:export-ydpi="90" />
+          <path
+             d="m 393.34486,269.64694 c -4.45317,-5.76556 -10.07816,-8.64837 -16.875,-8.64844 -8.90627,7e-5 -13.35939,3.42194 -13.35937,10.26563 -2e-5,4.82818 4.80466,8.81255 14.41406,11.95312 l 4.71094,1.54688 c 13.64057,4.45316 20.46088,11.81253 20.46094,22.07812 -6e-5,6.89064 -2.836,12.3047 -8.50782,16.24219 -4.50004,3.04688 -10.31254,4.57031 -17.4375,4.57031 -10.96877,0 -20.27345,-4.0078 -27.91406,-12.02343 l 7.80469,-7.10157 c 5.90623,6.32814 12.74997,9.4922 20.53125,9.49219 9.23433,1e-5 13.85151,-3.58592 13.85156,-10.75781 -5e-5,-5.43748 -5.08598,-9.96091 -15.25781,-13.57031 l -4.92188,-1.6875 c -12.84376,-4.49996 -19.26563,-11.08589 -19.26562,-19.75782 -1e-5,-5.48431 1.87499,-10.10149 5.625,-13.85156 4.49998,-4.49992 10.68747,-6.74992 18.5625,-6.75 10.54683,8e-5 19.19526,3.65632 25.94531,10.96875 l -8.36719,7.03125"
+             style="font-size:144px;font-variant:normal;font-stretch:normal;font-family:TakaoPGothic;-inkscape-font-specification:TakaoPGothic;stroke:#ffffff;stroke-opacity:1;fill:#ffffff;fill-opacity:1;stroke-width:13.80000000000000071;stroke-miterlimit:4;stroke-dasharray:none"
+             id="path3902"
+             inkscape:export-filename="/home/federico/Dropbox/contratos_online/src/static/images/docs_online.png"
+             inkscape:export-xdpi="90"
+             inkscape:export-ydpi="90" />
+          <path
+             d="m 505.70424,220.63913 c 13.7343,1.1e-4 25.00773,4.40635 33.82031,13.21875 9.98428,10.03133 14.97646,23.57819 14.97656,40.64062 -1e-4,16.68754 -5.08603,30.0469 -15.25781,40.07813 -8.71883,8.71875 -19.89851,13.07812 -33.53906,13.07812 -13.54692,0 -24.67972,-4.35937 -33.39844,-13.07812 -10.17189,-10.03123 -15.25782,-23.57809 -15.25781,-40.64063 -1e-5,-16.68743 4.99217,-30.04679 14.97656,-40.07812 8.81247,-8.8124 20.03902,-13.21864 33.67969,-13.21875 m 0,10.40625 c -8.81255,1e-4 -16.38285,3.16415 -22.71094,9.49219 -8.06252,8.06258 -12.09377,19.26569 -12.09375,33.60937 -2e-5,14.34379 4.03123,25.47659 12.09375,33.39844 6.23434,6.23439 13.80464,9.35157 22.71094,9.35156 8.85931,1e-5 16.47649,-3.11717 22.85156,-9.35156 8.06241,-8.06247 12.09366,-19.40621 12.09375,-34.03125 -9e-5,-13.82806 -4.07821,-24.82023 -12.23437,-32.97656 -6.18758,-6.32804 -13.75788,-9.49209 -22.71094,-9.49219"
+             style="font-size:144px;font-variant:normal;font-stretch:normal;font-family:TakaoPGothic;-inkscape-font-specification:TakaoPGothic;stroke:#ffffff;stroke-opacity:1;fill:#ffffff;fill-opacity:1;stroke-width:13.80000000000000071;stroke-miterlimit:4;stroke-dasharray:none"
+             id="path3904"
+             inkscape:export-filename="/home/federico/Dropbox/contratos_online/src/static/images/docs_online.png"
+             inkscape:export-xdpi="90"
+             inkscape:export-ydpi="90" />
+          <path
+             d="m 638.17299,325.54538 -12.375,0 0,-44.50781 c -6e-5,-12.18744 -5.03912,-18.28119 -15.11719,-18.28125 -10.17191,6e-5 -17.62503,6.09381 -22.35937,18.28125 l 0,44.50781 -12.375,0 0,-71.71875 11.53125,0 0,12.9375 c 6.74997,-9.56243 15.35152,-14.34368 25.80468,-14.34375 16.59369,7e-5 24.89055,9.30475 24.89063,27.91406 l 0,45.21094"
+             style="font-size:144px;font-variant:normal;font-stretch:normal;font-family:TakaoPGothic;-inkscape-font-specification:TakaoPGothic;stroke:#ffffff;stroke-opacity:1;fill:#ffffff;fill-opacity:1;stroke-width:13.80000000000000071;stroke-miterlimit:4;stroke-dasharray:none"
+             id="path3906"
+             inkscape:export-filename="/home/federico/Dropbox/contratos_online/src/static/images/docs_online.png"
+             inkscape:export-xdpi="90"
+             inkscape:export-ydpi="90" />
+          <path
+             d="m 675.64955,325.54538 -12.375,0 0,-106.45313 12.375,0 0,106.45313"
+             style="font-size:144px;font-variant:normal;font-stretch:normal;font-family:TakaoPGothic;-inkscape-font-specification:TakaoPGothic;stroke:#ffffff;stroke-opacity:1;fill:#ffffff;fill-opacity:1;stroke-width:13.80000000000000071;stroke-miterlimit:4;stroke-dasharray:none"
+             id="path3908"
+             inkscape:export-filename="/home/federico/Dropbox/contratos_online/src/static/images/docs_online.png"
+             inkscape:export-xdpi="90"
+             inkscape:export-ydpi="90" />
+          <path
+             d="m 715.51674,238.56882 -14.13281,0 0,-14.41407 14.13281,0 0,14.41407 m -0.91406,86.97656 -12.375,0 0,-71.71875 12.375,0 0,71.71875"
+             style="font-size:144px;font-variant:normal;font-stretch:normal;font-family:TakaoPGothic;-inkscape-font-specification:TakaoPGothic;stroke:#ffffff;stroke-opacity:1;fill:#ffffff;fill-opacity:1;stroke-width:13.80000000000000071;stroke-miterlimit:4;stroke-dasharray:none"
+             id="path3910"
+             inkscape:export-filename="/home/federico/Dropbox/contratos_online/src/static/images/docs_online.png"
+             inkscape:export-xdpi="90"
+             inkscape:export-ydpi="90" />
+          <path
+             d="m 802.70424,325.54538 -12.375,0 0,-44.50781 c -6e-5,-12.18744 -5.03912,-18.28119 -15.11719,-18.28125 -10.17191,6e-5 -17.62503,6.09381 -22.35937,18.28125 l 0,44.50781 -12.375,0 0,-71.71875 11.53125,0 0,12.9375 c 6.74997,-9.56243 15.35152,-14.34368 25.80468,-14.34375 16.59369,7e-5 24.89055,9.30475 24.89063,27.91406 l 0,45.21094"
+             style="font-size:144px;font-variant:normal;font-stretch:normal;font-family:TakaoPGothic;-inkscape-font-specification:TakaoPGothic;stroke:#ffffff;stroke-opacity:1;fill:#ffffff;fill-opacity:1;stroke-width:13.80000000000000071;stroke-miterlimit:4;stroke-dasharray:none"
+             id="path3912"
+             inkscape:export-filename="/home/federico/Dropbox/contratos_online/src/static/images/docs_online.png"
+             inkscape:export-xdpi="90"
+             inkscape:export-ydpi="90" />
+          <path
+             d="m 834.13393,291.09225 c 0.42185,8.29691 3.02341,14.83596 7.80468,19.61719 4.87497,4.87501 10.78122,7.31251 17.71875,7.3125 9.14057,1e-5 16.38276,-4.26561 21.72657,-12.79687 l 8.08593,5.34375 c -6.79694,11.39063 -17.22662,17.08593 -31.28906,17.08593 -10.64066,0 -19.38284,-3.39843 -26.22656,-10.19531 -6.89064,-6.93748 -10.33595,-16.0781 -10.33594,-27.42187 -10e-6,-12.04683 3.60937,-21.67963 10.82813,-28.89844 6.42185,-6.4218 14.43746,-9.63274 24.04687,-9.63281 9.04683,7e-5 16.61713,2.97663 22.71094,8.92968 6.84368,6.93756 10.26555,16.19537 10.26562,27.77344 l 0,2.88281 -55.33593,0 m 42.60937,-9.07031 c -0.70318,-6.51557 -3.00006,-11.64838 -6.89062,-15.39844 -3.8438,-3.84368 -8.39068,-5.76555 -13.64063,-5.76562 -6.09378,7e-5 -11.2969,2.60163 -15.60937,7.80469 -2.95315,3.51568 -4.87502,7.9688 -5.76563,13.35937 l 41.90625,0"
+             style="font-size:144px;font-variant:normal;font-stretch:normal;font-family:TakaoPGothic;-inkscape-font-specification:TakaoPGothic;stroke:#ffffff;stroke-opacity:1;fill:#ffffff;fill-opacity:1;stroke-width:13.80000000000000071;stroke-miterlimit:4;stroke-dasharray:none"
+             id="path3914"
+             inkscape:export-filename="/home/federico/Dropbox/contratos_online/src/static/images/docs_online.png"
+             inkscape:export-xdpi="90"
+             inkscape:export-ydpi="90" />
+        </g>
+      </g>
+    </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2993"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><flowRegion
+         id="flowRegion2995"><rect
+           id="rect2997"
+           width="437.14285"
+           height="51.42857"
+           x="-20"
+           y="418.07648" /></flowRegion><flowPara
+         id="flowPara2999"></flowPara></flowRoot>  </g>
+</svg>
