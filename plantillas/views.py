@@ -73,7 +73,7 @@ def CreateDraft(request, text=None, output=None):
     file_object = BytesIO()
     response = HttpResponse(content_type='application/'+output)
     response['Content-Disposition'] = 'attachment; filename=%s' % "doc."+output
-    text = str(text)
+    text = str(text).replace(r"[", "").replace("]", "")
     HTML(string=text, base_url=request.build_absolute_uri()).write_pdf(
         target=file_object, stylesheets=[CSS(string=("""
                                                  @page{
