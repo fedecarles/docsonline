@@ -11,7 +11,7 @@ class plantillaForm(forms.ModelForm):
     class Meta:
         model = plantillaModel
         widgets = {
-        #    'summernote': SummernoteInplaceWidget(),
+             # 'summernote': SummernoteInplaceWidget(),
              'doc_id': forms.TextInput(attrs={'readonly': 'readonly'}),
              'creation_date': forms.DateInput(format='%d-%m-%Y'),
         }

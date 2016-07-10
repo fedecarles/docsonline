@@ -30,7 +30,7 @@
                     <td><a href="/viewdoc/{{ row.doc_id }}">{{ row.title }}</a><br/>
                         {{ row.description }}<br/>
                         <br/>
-                        <footer>Creado por {{ row.user }} el {{ row.creation_date }}<br><footer>
+                        <footer>Actualizado por {{ row.user }} el {{ row.creation_date }}<br><footer>
                         {% for tag in row.tags.all %}
                             <a class="tag" href="tag/{{ tag }}">{{ tag }}</a>
                         {% endfor %}

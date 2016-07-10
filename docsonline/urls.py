@@ -25,7 +25,7 @@ urlpatterns = [
         name='auth_login'),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',
         name='auth_logout'),
-    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^$', 'plantillas.views.home', name='home'),
     url(r'^CreateDraft/$', 'plantillas.views.CreateDraft', name='CreateDraft'),
     url(r'^plantillas/$', 'plantillas.views.plantillas', name='plantillas'),

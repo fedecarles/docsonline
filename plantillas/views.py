@@ -138,10 +138,6 @@ def viewdoc(request, doc_id=None):
     instance = plantillaModel.objects.get(doc_id=doc_id)
     filter_tags = plantillaModel.objects.filter(doc_id=doc_id)
     form = plantillaForm(request.POST or None, instance=instance)
-    if instance.is_owner(request.user):
-        pass
-    else:
-        raise PermissionDenied
     initial_data = {
         "content_type": instance.get_content_type,
         "object_id": instance.id
