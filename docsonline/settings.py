@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap3',
-    'registration',
     'django_summernote',
     'plantillas',
     'comments',
@@ -136,16 +136,15 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    #'/var/www/static/',
+    # '/var/www/static/',
     ]
-
 
 
 # DJANGO REGISTRATION REDUX
 REGISTRATION_OPEN = True
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
-LOGIN_REDIRECT_URL = '/misdocs/'
+LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login/'
 
 USE_THOUSAND_SEPARATOR = True

@@ -1,4 +1,4 @@
-{% extends "header.html" %} {% load bootstrap3 %}
+{% extends "header.html" %} {% load bootstrap3 %} {% block title %}Docs Online | Plantillas{% endblock %}
 {% block content %}
 <br>
 <br>
@@ -33,7 +33,7 @@
                 {% bootstrap_field form.summernote show_label=False %}
         </div>
         <div id="side_fields">
-            <input type="button" id="gendoc" class="btn btn-default" title="actualizar campos" onclick="change();"/> 
+            <input type="button" id="gendoc" class="btn btn-default" title="actualizar campos" onclick="change();"/></input>
             <br/>
             <span id="placeholder">&nbsp;</span>
         </div>
@@ -46,8 +46,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <input type="submit" id="genpdf" class="btn btn-default" name="genpdf" value="PDF" title="pdf"/>
-                <input type="submit" id="genword" class="btn btn-default" name="genword" value="DOCX" title="docx"/>
+                <input type="submit" id="genpdf" class="btn btn-default" name="genpdf" value="PDF" title="pdf"/></input>
             </div>
         </div>
     </div>

@@ -11,10 +11,8 @@
     <h1>Login</h1>
         {% csrf_token %}
         {% bootstrap_form form %}
-
         <input class="btn btn-default" type="submit" value="Ingresar" />
         <input type="hidden" name="next" value="{{ next }}" />
-
     <p>¿No eres miembro? <a href="{% url 'registration_register' %}">
         Regístrate
     </a>!</p>

@@ -49,8 +49,11 @@
             background-size: contain;
         }
         .table{
-            max-width: 50%;
+            max-width: 70%;
             margin: 0 auto;
+        }
+        td{
+            background-color: white;
         }
         .dropdown-menu{
             text-align: center;
@@ -171,6 +174,7 @@
         .field.form-control{
             width: 200px;
             height: 20px;
+            padding: 3;
         }
         #side_fields{
             padding: 10px;
@@ -269,9 +273,8 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><a href="{% url 'plantillas' %}">Crear Doc</a></li>
-                            <li><a href="{% url 'misdocs' %}">Mis Docs</a></li>
                             <li><a href="{% url 'publicmodels' %}">Docs Públicos</a></li>
-                            <li><a href="#">Perfil</a></li>
+                            <li><a href="{% url 'view_profile' user.id %}">Perfil</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{% url 'auth_logout' %}?next=/">{% trans "Log out" %}</a></li>
                         </ul>

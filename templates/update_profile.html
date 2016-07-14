@@ -1,0 +1,14 @@
+{% extends 'header.html' %}
+{% load bootstrap3 %}
+
+{% block title %} Actualizar Perfil {% endblock %}
+{% block content %}
+<div style="margin-top: 150px; width: 20%; margin-left: 40%;">
+<h1>Actualiza tu perfil</h1>
+<form action="" method="POST"> {% csrf_token %}
+    {% bootstrap_form user_form %}
+    {% bootstrap_form profile_form %}
+    <input type="submit" class="btn btn-success" value="Guardar"></input>
+</form>
+{% endblock %}
+

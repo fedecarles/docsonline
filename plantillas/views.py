@@ -4,7 +4,11 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from .forms import plantillaForm
+from .forms import userForm
+from .forms import userProfileForm
 from .models import plantillaModel
+from .models import User
+from .models import userProfile
 from django.http import HttpResponse
 from io import BytesIO
 from weasyprint import HTML, CSS
@@ -23,46 +27,52 @@ def home(request):
 
 @login_required
 def plantillas(request, doc_id=None):
+    """ Main view to create models, allowing to create templates, save them
+    or delete them, only if the user owns the instance.
+    The view takes a doc_id (uuid) parameter which is either provided on the url
+    or if there is None, created on the spot."""
     if doc_id is None:
         form = plantillaForm(request.POST or None)
+        context = {
+            "form": form,
+        }
     else:
         instance = plantillaModel.objects.get(doc_id=doc_id)
         form = plantillaForm(request.POST or None, instance=instance)
+        context = {
+            "form": form,
+        }
         if instance.is_owner(request.user):
             pass
         else:
             raise PermissionDenied
-    context = {
-        "form": form,
-    }
     if request.method == 'POST':
         if form.is_valid():
             instance = form.save(commit=False)
-            context = {
-                "form": form,
-                "text": form.cleaned_data["summernote"],
-                "public": form.cleaned_data["public"],
-            }
+            # Run CreateDraft function if the POST is pdf.
             if "genpdf" in request.POST:
-                return (CreateDraft(request, text=context["text"],
+                return (CreateDraft(request, text=instance.summernote,
                                     output="pdf"))
-            if "genword" in request.POST:
-                return (CreateDraft(request, text=context["text"],
-                                    output="docx"))
+            # Reload the saved instance.
             elif "reload" in request.POST:
                 instance_url = reverse('plantillas')+str(instance.doc_id)
                 return redirect(instance_url)
+            # delete the instance from the database.
+            elif "delete" in request.POST:
+                instance.delete()
+                instance_url = reverse('view_profile')+str(request.user.id)
+                return redirect(instance_url)
+            if doc_id is None:
+                doc_id = str(uuid.uuid4())[:10]
             else:
                 pass
             instance.user = request.user
             instance.creation_date = time.strftime("%d-%m-%Y")
+            instance.doc_id = doc_id
             instance.save()
             form.save_m2m()
-            if "delete" in request.POST:
-                instance.delete()
-                return redirect('misdocs')
-        instance_url = reverse('plantillas')+str(instance.doc_id)
-        return HttpResponseRedirect(instance_url, context)
+            instance_url = reverse('plantillas')+str(instance.doc_id)
+            return HttpResponseRedirect(instance_url, context)
     return render(request, "plantillas.html", context)
 
 
@@ -92,39 +102,14 @@ def CreateDraft(request, text=None, output=None):
     return response
 
 
-def publicmodels(request):
-    public_data = plantillaModel.objects.filter(public=1)
-    display_data = {
-        "public_detail": public_data,
-        "tag_names": [i.name for i in Tag.objects.all()]
-    }
-    return render_to_response("publicmodels.html", display_data,
-                              context_instance=RequestContext(request))
+def publicmodels(request, tag=None):
+    """List view of all templates that are stored as Public. Users can
+    browse the list without having to be loged in."""
 
-
-@login_required
-def mydocs(request):
-    public_data = plantillaModel.objects.filter(user=request.user)
-    display_data = {
-        "public_detail": public_data,
-        "tag_names": [i.name for i in Tag.objects.all()]
-    }
-    return render_to_response("misdocs.html", display_data,
-                              context_instance=RequestContext(request))
-
-
-def tagpagePrivate(request, tag):
-    public_data = plantillaModel.objects.filter(tags__name=tag)
-    display_data = {
-        "public_detail": public_data,
-        "tag_names": [i.name for i in Tag.objects.all()]
-    }
-    return render_to_response("misdocs.html", display_data,
-                              context_instance=RequestContext(request))
-
-
-def tagpagePublic(request, tag):
-    public_data = plantillaModel.objects.filter(public=1, tags__name=tag)
+    if tag is None:
+        public_data = plantillaModel.objects.filter(public=1)
+    else:
+        public_data = plantillaModel.objects.filter(public=1, tags__name=tag)
     display_data = {
         "public_detail": public_data,
         "tag_names": [i.name for i in Tag.objects.all()]
@@ -135,6 +120,9 @@ def tagpagePublic(request, tag):
 
 @login_required
 def viewdoc(request, doc_id=None):
+    """View only view of public docs. Users cannot edit content, but can
+    fork a copy of the doc for their own use."""
+
     instance = plantillaModel.objects.get(doc_id=doc_id)
     filter_tags = plantillaModel.objects.filter(doc_id=doc_id)
     form = plantillaForm(request.POST or None, instance=instance)
@@ -153,7 +141,6 @@ def viewdoc(request, doc_id=None):
             object_id=obj_id,
             content=content_data
         )
-
     comments = instance.comments
     context = {
         "form": form,
@@ -165,12 +152,14 @@ def viewdoc(request, doc_id=None):
         "comment_form": comment_form,
         "doc_id": instance.doc_id
     }
-
     return render(request, "viewdoc.html", context)
 
 
 @login_required
 def newdoc(request, doc_id=None):
+    """View to create a new instance of a copied doc. It copy a saved
+    template and provides a new uuid for it."""
+
     instance = plantillaModel.objects.get(doc_id=doc_id)
     form = plantillaForm(request.POST or None, instance=instance)
     context = {
@@ -190,3 +179,46 @@ def newdoc(request, doc_id=None):
     }
     instance_url = reverse('plantillas')+context["doc_id"]
     return HttpResponseRedirect(instance_url, context)
+
+
+@login_required
+def update_profile(request):
+    """Profile view for logged user."""
+    user = request.user
+    profile = user.profile
+    if request.method == 'POST':
+        user_form = userForm(request.POST, instance=user)
+        profile_form = userProfileForm(request.POST, instance=profile)
+        if all([user_form.is_valid(), profile_form.is_valid()]):
+            user_form.save()
+            profile_form.save()
+            instance_url = reverse('view_profile')+str(user.id)
+            return redirect(instance_url)
+    else:
+        user_form = userForm(instance=user)
+        profile_form = userProfileForm(instance=profile)
+    return render(request, 'update_profile.html',
+                  {'user_form': user_form, 'profile_form': profile_form})
+
+
+@login_required
+def view_profile(request, id=None, tag=None):
+    """Profile View for a user other than the logged user (not editable)."""
+
+    userdata = User.objects.get(pk=id)
+    userprofile = userProfile.objects.get(user_id=id)
+    public_data = plantillaModel.objects.filter(user_id=id)
+    context = {
+        "uuid": str(id),
+        "req_id": str(request.user.id),
+        "username": userdata.username,
+        "nombre": userdata.first_name,
+        "apellido": userdata.last_name,
+        "email": userdata.email,
+        "website": userprofile.website,
+        "lugar": userprofile.place,
+        "bio": userprofile.bio,
+        "public_detail": public_data,
+        "tag_names": [i.name for i in Tag.objects.all()]
+    }
+    return render(request, 'view_profile.html', context)

@@ -1,0 +1,54 @@
+{% extends 'header.html' %}
+{% load bootstrap3 %}
+{% load static %}
+{% load ratings %}
+
+{% block title %} Actualizar Perfil {% endblock %}
+{% block content %}
+<div style="margin-top: 150px;">
+<div style="width: 20%; float: left; position: relative; margin-left: 50px;">
+    <h1 style="color: grey;">{{ username }}</h1>
+    <p>{{ nombre }} {{ apellido }}</p>
+    <p><i class="fa fa-envelope-o"></i> {{ email }}</p>
+    <p><i class="fa fa-circle-o"></i> {{ website }}</p>
+    <p><i class="fa fa-map-marker"></i> {{ lugar }}</p>
+    <p><i class="fa fa-child"></i> {{ bio }}</p>
+    <br/>
+    <form method="get" action="{% url 'update_profile' %}">
+    <input type="submit" class="btn btn-default" value="Actualizar Perfil"></input>
+    </form>
+    <br/>
+    <form method="get" action="{% url 'auth_password_change' %}">
+    <input type="submit" class="btn btn-default" value="Cambiar Contraseña"></input>
+    </form>
+</div>
+<div style="width: 70%; float: left; position: relative;">
+    <h1 style="margin-left: 40%; style=color: grey; font-weight: bold;">Mis Docs</h1>
+    <div class="tags" style="float: right;">
+        {% for tag in tag_names %}
+        <a class="tag" href="{% url 'view_profile' tag=tag %}">{{ tag }}</a>
+        {% endfor %}
+    </div >
+    <table class="table table-striped">
+    {% for row in public_detail %}
+       <tbody>
+           <tr>
+               <td>
+                  <a href="/plantillas/{{ row.doc_id }}">{{ row.title }}</a><br/>
+                  {{ row.description }}<br/>
+                  <br/>
+                  <footer>Actualizado por {{ row.user }} el {{ row.creation_date }}<br><footer>
+                  {% for tag in row.tags.all %}
+                      <a class="tag" href="tag/{{ tag }}">{{ tag }}</a>
+                  {% endfor %}
+               </td>
+               <td>
+                  {% ratings row %}
+               </td>
+           </tr>
+       </tbody>
+    {% endfor %}
+    </table>
+</div>
+</div>
+{% endblock %}
