@@ -118,7 +118,6 @@ def publicmodels(request, tag=None):
                               context_instance=RequestContext(request))
 
 
-@login_required
 def viewdoc(request, doc_id=None):
     """View only view of public docs. Users cannot edit content, but can
     fork a copy of the doc for their own use."""

@@ -136,15 +136,16 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    # '/var/www/static/',
+    #'/var/www/static/',
     ]
+
 
 
 # DJANGO REGISTRATION REDUX
 REGISTRATION_OPEN = True
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/view_profile/'
 LOGIN_URL = '/accounts/login/'
 
 USE_THOUSAND_SEPARATOR = True
@@ -165,6 +166,6 @@ SUMMERNOTE_CONFIG = {
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = os.environ["EMAIL"]
-EMAIL_HOST_PASSWORD = os.environ["PASSWORD"]
+EMAIL_HOST_USER = 'fedecarles@gmail.com'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
