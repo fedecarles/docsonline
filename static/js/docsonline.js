@@ -28,7 +28,7 @@ $('#id_summernote').summernote({
       buttons: {
           modalbtn: modalbtn,
         },
-      height: 600,
+      height: 578,
       maximumFileSize: '1mb',
       maximumFileSizeError: 'Maximum file size exceeded.',
 

@@ -13,10 +13,9 @@
 <div class="panel panel-default">
     <div class="panel-body" id="body-container">
         <div id="left_side_fields">
-            <input type="submit" id="delete" class="btn btn-default" name="delete" value="" title="eliminar"/>
-            <input type="submit" id="reload" class="btn btn-default"
-            name="reload" value="" title="recargar"/>
-            <input type="submit" id="guardar" class="btn btn-default" name="guardar" value="" title="guardar"/>
+            <button type="button" id="delete" class="btn btn-info" name="delete" value="" data-toggle="modal" data-target="#deleteModal" title="eliminar"/></button>
+            <input type="submit" id="reload" class="btn btn-default" name="reload" value="" title="recargar"/>
+            <button type="button" id="guardar" class="btn btn-info" name="guardar" value="" title="button" data-toggle="modal" data-target="#guardarModal"></button>
             <br/>
             <br/>
             <br/>
@@ -51,6 +50,36 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div id="guardarModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width: 400px;">
+      <div class="modal-body">
+        <p>¿Estás seguro que quieres salvar esta plantilla? Las variables se
+        actualizarán con los nuevos valores.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-default" name="guardar" value="" title="guardar"/>Guardar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div id="deleteModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width: 400px;">
+      <div class="modal-body">
+        <p>¿Estás seguro que quieres eliminar esta plantilla?.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-default" name="delete" value="" title="eliminar"/>Eliminar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </form>
 <script language="javascript" src="/static/js/docsonline.js"></script>
 {% endblock %}

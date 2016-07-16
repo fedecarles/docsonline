@@ -26,7 +26,7 @@
     {% endif %} 
 </div>
 <div style="width: 70%; float: left; position: relative;">
-    <h1 style="margin-left: 40%; style=color: grey; font-weight: bold;">Mis Docs</h1>
+    <h2 style="margin-left: 40%; style=color: grey; font-weight: bold;">Mis Docs</h2>
     <div class="tags" style="float: right;">
         {% for tag in tag_names %}
         <a class="tag" href="{% url 'view_profile_tags' id=uuid tag=tag %}">{{ tag }}</a>
@@ -42,7 +42,7 @@
                   <br/>
                   <footer>Actualizado por {{ row.user }} el {{ row.creation_date }}<br><footer>
                   {% for tag in row.tags.all %}
-                      <a class="tag" href="tag/{{ tag }}">{{ tag }}</a>
+                      <a class="tag" href="{% url 'view_profile_tags' id=uuid tag=tag %}">{{ tag }}</a>
                   {% endfor %}
                </td>
                <td>

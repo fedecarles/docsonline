@@ -203,10 +203,13 @@ def update_profile(request):
 @login_required
 def view_profile(request, id=None, tag=None):
     """Profile View for a user other than the logged user (not editable)."""
-
     userdata = User.objects.get(pk=id)
     userprofile = userProfile.objects.get(user_id=id)
-    public_data = plantillaModel.objects.filter(user_id=id)
+    if tag is None:
+        public_data = plantillaModel.objects.filter(user_id=id)
+    else:
+        public_data = plantillaModel.objects.filter(user_id=id, tags__name=tag)
+
     context = {
         "uuid": str(id),
         "req_id": str(request.user.id),
