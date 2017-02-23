@@ -3,7 +3,6 @@
 {% load ratings %}
 {% block title %}Docs Públicos{% endblock %}
 {% block content %}
-
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -12,46 +11,54 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	</head>
 	<body>
-<div style="margin-top: 150px; margin-left: 20%">
-<div style="width: 70%; float: left; position: relative;">
-    <h1 style="margin-left: 40%; style=color: grey; font-weight: bold;">Docs Públicos</h1>
-        <div class="tags" style="float: right;">
-            {% for tag in tag_names %}
-            <a class="tag" href="{% url 'publicmodels' tag=tag %}">{{ tag }}</a>
-            {% endfor %}
-        </div >
-        <table class="table table-striped">
-        {% for row in public_detail %}
-            <tbody>
-                <tr>
-                    <td><a href="/viewdoc/{{ row.doc_id }}">{{ row.title }}</a><br/>
-                        {{ row.description }}<br/>
-                        <br/>
-                        <footer>Actualizado por <a href="{% url 'view_profile' id=row.user_id%}">{{ row.user }}</a> el {{ row.creation_date }}<br><footer>
-                        {% for tag in row.tags.all %}
-                            <a class="tag" href="tag/{{ tag }}">{{ tag }}</a>
-                        {% endfor %}
-                    </td>
-                    <td>
-                        {% ratings row %}
-                    </td>
-                </tr>
-            </tbody>
+<div class="col-md-12">
+    <h2>Docs Públicos</h2>
+    <div id="doclist" class="col-md-9">
+        <input type="text" class="search form-control" placeholder="Buscar"/>
+        <ul class="list">
+        <br/>
+        <hr/>
+       {% for row in public_detail %}
+            <div class="col-md-8">
+             <li><p class="docitem"><a href="/viewdoc/{{ row.doc_id }}">{{ row.title }}</a></p>
+                 <p>{{ row.description }}<p/>
+                 <footer>
+                     <small>Actualizado por 
+                         <a href="{% url 'view_profile' id=row.user_id%}">{{ row.user }}</a> el {{ row.creation_date }}<br>
+                     </small>
+                 <footer>
+                 {% for tag in row.tags.all %}
+                     <a class="tag" href="tag/{{ tag }}">{{ tag }}</a>
+                 {% endfor %}
+                 <br/>
+                 <hr/>
+             </div>
+             <div class="col-md-4">
+                 {% ratings row %}
+             </div>
+             </li>
         {% endfor %}
-        </table>
-</div>
+         </ul>
+         <ul class="pagination"></ul>
+    </div>
+    <div class="tags col-md-2">
+        {% for tag in tag_names %}
+        <a class="tag" href="{% url 'publicmodels' tag=tag %}">{{ tag }}</a>
+        {% endfor %}
+    </div >
 </div>
 </body>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/scripts.js"></script>
 <script type="text/javascript">
-    var rowCountloc = $('#loctable tr').length;
-    var rowCountcdoc = $('#cdoctable tr').length;
-    var qtyloc = $('#qtyloc');
-    var qtycdoc = $('#qtycdoc');
-    qtyloc[0].innerHTML += rowCountloc-1;
-    qtycdoc[0].innerHTML += rowCountcdoc-1;
+$(document).ready(function(){
+    var docList = new List('doclist', { 
+        valueNames: ['docitem']
+        page: 10,
+        pagination: true
+    });
+});
 </script>
 </html>
 {% endblock %}

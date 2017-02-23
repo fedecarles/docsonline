@@ -1,5 +1,4 @@
-from django.shortcuts import (render, render_to_response,
-                              RequestContext, redirect)
+from django.shortcuts import (render, redirect)
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -114,8 +113,7 @@ def publicmodels(request, tag=None):
         "public_detail": public_data,
         "tag_names": [i.name for i in Tag.objects.all()]
     }
-    return render_to_response("publicmodels.html", display_data,
-                              context_instance=RequestContext(request))
+    return render(request, "publicmodels.html", display_data)
 
 
 def viewdoc(request, doc_id=None):
@@ -144,12 +142,14 @@ def viewdoc(request, doc_id=None):
     context = {
         "form": form,
         "text": instance.summernote,
+        "date": instance.creation_date,
         "title": instance.title,
         "description": instance.description,
         "tags_data": filter_tags,
         "comments": comments,
         "comment_form": comment_form,
-        "doc_id": instance.doc_id
+        "doc_id": instance.doc_id,
+        "instance": instance
     }
     return render(request, "viewdoc.html", context)
 
@@ -218,8 +218,7 @@ def view_profile(request, id=None, tag=None):
         "apellido": userdata.last_name,
         "email": userdata.email,
         "website": userprofile.website,
-        "lugar": userprofile.place,
-        "bio": userprofile.bio,
+        "lugar": userprofile.lugar,
         "public_detail": public_data,
         "tag_names": [i.name for i in Tag.objects.all()]
     }

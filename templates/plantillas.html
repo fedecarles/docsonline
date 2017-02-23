@@ -1,51 +1,82 @@
 {% extends "header.html" %} {% load bootstrap3 %} {% block title %}Docs Online | Plantillas{% endblock %}
 {% block content %}
-<br>
-<br>
-<br> 
-<br>
-<br>
 <head>
     <script language="javascript" src="/static/js/docsonline.js"></script>
 </head>
 <body>
-<form method="POST" action=''>{% csrf_token show_label=False %}
-<div class="panel panel-default">
-    <div class="panel-body" id="body-container">
-        <div id="left_side_fields">
-            <button type="button" id="delete" class="btn btn-info" name="delete" value="" data-toggle="modal" data-target="#deleteModal" title="eliminar"/></button>
-            <input type="submit" id="reload" class="btn btn-default" name="reload" value="" title="recargar"/>
-            <button type="button" id="guardar" class="btn btn-info" name="guardar" value="" title="button" data-toggle="modal" data-target="#guardarModal"></button>
-            <br/>
-            <br/>
-            <br/>
-            <label>Título</label> 
-            {% bootstrap_field form.title show_label=False %}
-            <label>Descripción</label> 
-            {% bootstrap_field form.description show_label=False %}
-            <label>Disponibilidad</label> 
-            {% bootstrap_field form.public show_label=False %}
-            <label>Tags</label> 
-            {% bootstrap_field form.tags show_label=False %}
+<div class="container-fluid">
+    <form method="POST" action=''>{% csrf_token show_label=False %}
+        <div class="row col-md-12">
+            <div id="left_side_fields" class="col-md-3">
+                <div class="col-md-offset-4">
+                    <button class="toolbar-btn" type="button" id="delete"  name="delete" value="" data-toggle="modal" data-target="#deleteModal" title="eliminar"/>
+                        <i class="fa fa-times fa-lg" aria-hidden="true"></i>    
+                    </button>
+                    <button class="toolbar-btn" type="submit" id="reload" name="reload" value="" title="recargar">
+                        <i class="fa fa-refresh fa-lg" aria-hidden="true"></i>    
+                    </button>
+                    <button class="toolbar-btn" type="button" id="guardar" name="guardar" value="" title="button" data-toggle="modal" data-target="#guardarModal">
+                        <i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i>    
+                </button>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <label>Título</label> 
+                {% bootstrap_field form.title show_label=False %}
+                <label>Descripción</label> 
+                {% bootstrap_field form.description show_label=False %}
+                <label>Disponibilidad</label> 
+                {% bootstrap_field form.public show_label=False %}
+                <label>Tags</label> 
+                {% bootstrap_field form.tags show_label=False %}
+            </div>
+            <div id="rich_text" class="col-md-6">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" id="tabedit" href="#editar">Editar</a></li>
+                    <li><a data-toggle="tab"  id="tabcomplete" href="#completar">Completar</a></li>
+                </ul>
+                <div id="editar" class="tab-pane fade in active">
+                    {% bootstrap_field form.summernote show_label=False %}
+                </div>
+                <div id="completar" class="tab-pane fade">
+                <input type="submit" id="genpdf" class="btn btn-default" name="genpdf" value="PDF" title="pdf"/></input>
+                    <div id="completar-text"></div>
+                </div>
+            </div>
+            <div id="side_fields" class="col-md-3">
+                <div class="col-md-offset-5">
+                    <button class="toolbar-btn" type="button" id="gendoc" title="actualizar campos" onclick="change();"/>
+                        <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>    
+                    </button>
+                </div>
+                <br/>
+                <span id="placeholder">&nbsp;</span>
+            </div>
         </div>
-        <div id="rich_text">
-                {% bootstrap_field form.summernote show_label=False %}
-        </div>
-        <div id="side_fields">
-            <input type="button" id="gendoc" class="btn btn-default" title="actualizar campos" onclick="change();"/></input>
-            <br/>
-            <span id="placeholder">&nbsp;</span>
-        </div>
-    </div>
-</div>
 </body>
-<a href="#myModal" id="modalbtn" role="button" class="btn btn-large btn-primary" data-toggle="modal"></a>
+<a href="#myModal" id="exportbtn" role="button" class="btn btn-large btn-primary" data-toggle="modal"></a>
 <!-- Modal HTML -->
 <div id="myModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
                 <input type="submit" id="genpdf" class="btn btn-default" name="genpdf" value="PDF" title="pdf"/></input>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="#addfieldbtn" id="addfield" role="button" class="btn btn-large btn-primary" data-toggle="modal"></a>
+<!-- Modal HTML -->
+<div id="addfieldbtn" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <label>Nombre del campo<label>
+                <input id="addfieldname" class="form-control" name="addfieldname"></input>
+                <button type="button" id="add_field" class="form-control" name="addfieldname">
+                    OK
+                </button>
             </div>
         </div>
     </div>
@@ -79,7 +110,6 @@
     </div>
   </div>
 </div>
-
 </form>
 <script language="javascript" src="/static/js/docsonline.js"></script>
 {% endblock %}

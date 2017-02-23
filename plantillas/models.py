@@ -12,8 +12,7 @@ import uuid
 class userProfile(models.Model):
     user = models.OneToOneField(User, related_name='profile')
     website = models.CharField(max_length=100, blank=True, null=True)
-    place = models.CharField(max_length=50, blank=True, null=True)
-    bio = models.TextField(max_length=500, blank=True, null=True)
+    lugar = models.CharField(max_length=50, blank=True, null=True)
 
     def __unicode__(self):
         return self.user.username

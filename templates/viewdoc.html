@@ -1,21 +1,29 @@
 {% extends "header.html" %} {% load bootstrap3 %}
+{% load ratings %}
 {% block content %}
 <br>
 <br>
 <br> 
 <br>
 <br>
-<div class="panel panel-default">
-    <div class="panel-body" id="body-container">
-        <div id="left_side_fields">
+<div class="container-fluid">
+    <div class="row- col-md-12">
+        <div id="left_side_fields" class="col-md-3">
             <form method="POST" action=''>{% csrf_token show_label=False %}
-                <a href="{% url 'newdoc' doc_id=doc_id %}"> <input type="button" id="newdoc" class="btn btn-default" name="newdoc" title="usar Doc"/></a>
+            <div class="col-md-offset-5">
+                <a class="toolbar-btn" href="{% url 'newdoc' doc_id=doc_id %}">
+                    <i class="fa fa-files-o fa-lg" aria-hidden="true"></i>
+                </a>
+            </div>
             </form>
-            <br/>
             <br/>
             <br/>
             <label>Título</label> 
             {{ title }}
+            <br />
+            <br />
+            <label>Fecha</label> 
+            {{ date }}
             <br />
             <br />
             <label>Descripción</label> 
@@ -49,14 +57,14 @@
             <a href="https://twitter.com/home?status=Hola%2C%20este%20documento%20puede%20interesarte.%20%23docsonline%20{{ request.build_absolute_uri }}" target="_blank">
                 <i class="fa fa-twitter-square fa-2x" style="color:#4099FF"></i>
             </a>
-
-
-
         </div>
-        <div id="rich_text">
+        <div id="rich_text" class="col-md-6">
+            <div id="text-background" class="col-md-12">
             {{ text|safe }}
+            </div>
         </div>
-        <div id="side_fields">
+        <div id="side_fields" class="col-md-3">
+            {% ratings instance %}
             <p>Comentarios</p>
             <form method="POST" action="">{% csrf_token %}
                 {% bootstrap_form comment_form %}

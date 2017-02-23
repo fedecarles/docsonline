@@ -1,12 +1,13 @@
 // Create summernote custom Export button.
-var modalbtn = function (context) {
+
+var addfieldbtn = function (context) {
   var ui = $.summernote.ui;
   // create button
   var button = ui.button({
-    contents: '<i class="fa fa-file"/>',
-    tooltip: 'Export',
+    contents: '<i class="fa fa-plus-square-o"/>',
+    tooltip: 'Crear campo',
     click: function () {
-        $('#modalbtn').click();
+        $('#addfield').click();
     }
   });
   return button.render();
@@ -22,82 +23,92 @@ $('#id_summernote').summernote({
         ['para', ['ul', 'ol', 'paragraph']],
         ['insert', ['picture']],
         ['table', ['table']],
-        ['mybutton', ['modalbtn']],
+        ['addfieldbtn', ['addfieldbtn']],
         ['view', ['codeview']],
       ],
       buttons: {
-          modalbtn: modalbtn,
+          addfieldbtn: addfieldbtn,
         },
-      height: 578,
+      height: 650,
       maximumFileSize: '1mb',
       maximumFileSizeError: 'Maximum file size exceeded.',
 
 });
-$('#id_summernote').summernote('code');
 
-// Function change to update the documents variables based on the user input.
-// The function matches the user input on the side fields with the corresponding 
-// var in the summernote text (id with []). 
-function change(){
-    var texto = $('#id_summernote').summernote('code');
-    var words = texto.match(/\[\w+\]/gi);
+$('#add_field').on('click',function(e){
+    placeholder = $('#addfieldname').val();
+    $('.note-editable').focus();  
+    pasteHtmlAtCaret('<span class="hl">' + placeholder + '</span> ');
+    $('#addfieldbtn').modal('toggle');
+    e.preventDefault(); 
+});
 
-    for(var i=0; i < words.length; i++) {
-        words[i] = words[i].replace(/\[|\]/g, '');
-    }
-    var unique_words = words.filter(function(elem, pos) {
-        return words.indexOf(elem) == pos;
-    }); 
+$(document).ready(function(){
+    $('#id_summernote').summernote('code');
 
-    var fields = document.getElementsByClassName('field form-control');
-    replace_words  = [].map.call(fields, function(input) {
-        return input.value;
-    })
-     
-    var mapObj = {}
-    $.each(replace_words,function(i,val){
-        mapObj[unique_words[i]] = val;
+    $('#tabcomplete').on('click', function(){
+        $('#editar .form-group').hide();
+        texto = $('#id_summernote').summernote('code');
+        $('#completar-text').html(texto);
+        $.each($('#completar-text .hl'), function(i){
+            $(this).replaceWith('<input class="hl" placeholder="' + $(this).text() + '"></input>');
+        });
     });
-    //alert (JSON.stringify(mapObj))
+    
+    $('#tabedit').on('click', function(){
+        $('#editar .form-group').show();
+    });
+});
 
-    var re = new RegExp(Object.keys(mapObj).join("|"),"g");
-    texto = texto.replace(re, function(matched){
-        return mapObj[matched];
-    })
-    $('#id_summernote').summernote('code', texto);
-    $('#id_summernote-textarea').html(texto);
-}
+$(document).on('click', function(){
 
-// Funtion add to generate the side fields base on the summernote vars with [].
-function add() {
-    placeholder = $("#placeholder");
-    placeholder.empty();
-    texto = $('#id_summernote').summernote('code');
-    var fields = texto.match(/\[(\w+)\]/g);
-    texto = texto.replace(/\[_?/g, '<span class="hl">[_')
-    texto = texto.replace(/_?]/g, "_]</span>");
-    texto = texto.replace(/<span class="hl"><span class="hl">/g, '<span class="hl">')
-    $('#id_summernote').summernote('code', texto);
+    $('#completar-text input[placeholder]').each(function(){
+        $(this).attr('size', $(this).attr('placeholder').length*.9);
+    });
 
-    var unique_fields = fields.filter(function(elem, pos) {
-        return fields.indexOf(elem) == pos;
-      }); 
-    var uniquelength = unique_fields.length;
+    $('#completar-text input').on('change keyup paste', function(){
+        $(this).attr('value', $(this).val());
+        $(this).html($(this).val());
+        $(this).width($(this).prop('scrollWidth'))
+    });
 
-    for (var i = 0; i < uniquelength; i++) {
-        var element = document.createElement("input");
-        var elementlabel = document.createElement("span");
-        
-        element.setAttribute("type", "input");
-        element.setAttribute("class", "field form-control");
-        elementlabel.setAttribute("class", "field_label");
-        element.setAttribute("name", unique_fields[i]);
-        elementlabel.innerHTML = unique_fields[i];
+    $('#genpdf').on('click', function(){
+        $('#completar-text input').each(function(){                        
+            $(this).replaceWith('<span>' + $(this).val() + '</span>'); 
+        });     
+        texto = $('#completar-text').html()
+        $('#id_summernote').summernote('code', texto);
+    });
+});
 
-        if ($('input[name="' + unique_fields + '"]').length <= 0) {
-           placeholder.append(elementlabel);
-           placeholder.append(element);
+function pasteHtmlAtCaret(html) {
+    var sel, range;
+    if (window.getSelection) {
+        // IE9 and non-IE
+        sel = window.getSelection();
+        if (sel.getRangeAt && sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            range.deleteContents();
+            // Range.createContextualFragment() would be useful here but is
+            //non-standard and not supported in all browsers (IE9, for one)
+            var el = document.createElement("div");
+            el.innerHTML = html;
+            var frag = document.createDocumentFragment(), node, lastNode;
+            while ( (node = el.firstChild) ) {
+                lastNode = frag.appendChild(node);
+            }
+            range.insertNode(frag);
+            // Preserve the selection
+            if (lastNode) {
+                range = range.cloneRange();
+                range.setStartAfter(lastNode);
+                range.collapse(true);
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
         }
+    } else if (document.selection && document.selection.type != "Control") {
+        // IE < 9
+        document.selection.createRange().pasteHTML(html);
     }
 }
-$(document).ready(add);
