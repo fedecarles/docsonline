@@ -15,12 +15,14 @@
     <h2>Docs Públicos</h2>
     <div id="doclist" class="col-md-9">
         <input type="text" class="search form-control" placeholder="Buscar"/>
+        <br/>
         <ul class="list">
         <br/>
         <hr/>
        {% for row in public_detail %}
             <div class="col-md-8">
-             <li><p class="docitem"><a href="/viewdoc/{{ row.doc_id }}">{{ row.title }}</a></p>
+             <li>
+                 <p class="docitem"><a href="/viewdoc/{{ row.doc_id }}">{{ row.title }}</a></p>
                  <p>{{ row.description }}<p/>
                  <footer>
                      <small>Actualizado por 
@@ -32,14 +34,15 @@
                  {% endfor %}
                  <br/>
                  <hr/>
-             </div>
-             <div class="col-md-4">
-                 {% ratings row %}
-             </div>
-             </li>
+            </div>
+            <div class="col-md-4">
+                {% ratings row %}
+            </div>
+            </li>
         {% endfor %}
-         </ul>
-         <ul class="pagination"></ul>
+        </ul>
+        <br/>
+        <ul id="paginator" class="pagination"></ul>
     </div>
     <div class="tags col-md-2">
         {% for tag in tag_names %}
@@ -48,13 +51,10 @@
     </div >
 </div>
 </body>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/scripts.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
     var docList = new List('doclist', { 
-        valueNames: ['docitem']
+        valueNames: ['docitem'],
         page: 10,
         pagination: true
     });

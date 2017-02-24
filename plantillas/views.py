@@ -106,9 +106,9 @@ def publicmodels(request, tag=None):
     browse the list without having to be loged in."""
 
     if tag is None:
-        public_data = plantillaModel.objects.filter(public=1)
+        public_data = plantillaModel.objects.filter(public=1).order_by('-creation_date')
     else:
-        public_data = plantillaModel.objects.filter(public=1, tags__name=tag)
+        public_data = plantillaModel.objects.filter(public=1, tags__name=tag).order_by('-creation_date')
     display_data = {
         "public_detail": public_data,
         "tag_names": [i.name for i in Tag.objects.all()]
@@ -206,9 +206,9 @@ def view_profile(request, id=None, tag=None):
     userdata = User.objects.get(pk=id)
     userprofile = userProfile.objects.get(user_id=id)
     if tag is None:
-        public_data = plantillaModel.objects.filter(user_id=id)
+        public_data = plantillaModel.objects.filter(user_id=id).order_by('-creation_date')
     else:
-        public_data = plantillaModel.objects.filter(user_id=id, tags__name=tag)
+        public_data = plantillaModel.objects.filter(user_id=id, tags__name=tag).order_by('-creation_date')
 
     context = {
         "uuid": str(id),
