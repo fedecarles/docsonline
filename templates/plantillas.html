@@ -4,6 +4,7 @@
     <script language="javascript" src="/static/js/docsonline.js"></script>
 </head>
 <body>
+<br/>
 <div class="container-fluid">
     <form method="POST" action=''>{% csrf_token show_label=False %}
         <div class="row col-md-12">
@@ -40,18 +41,35 @@
                     {% bootstrap_field form.summernote show_label=False %}
                 </div>
                 <div id="completar" class="tab-pane fade">
-                <input type="submit" id="genpdf" class="btn btn-default" name="genpdf" value="PDF" title="pdf"/></input>
                     <div id="completar-text"></div>
                 </div>
             </div>
             <div id="side_fields" class="col-md-3">
                 <div class="col-md-offset-5">
-                    <button class="toolbar-btn" type="button" id="gendoc" title="actualizar campos" onclick="change();"/>
+                    <button class="toolbar-btn" type="button" id="pencil" name="pencil" value="" title="pencil"/>
                         <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>    
+                    </button>
+                    <button class="toolbar-btn" type="submit" id="genpdf" name="genpdf" value="" title="generar pdf"/>
+                        <i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i>
                     </button>
                 </div>
                 <br/>
-                <span id="placeholder">&nbsp;</span>
+                <h4 class="col-md-offset-4">FIRMA</h4>
+                    <div class="checkbox">
+                        <p><label><input id="firma-check" type="checkbox" value="">Firmar Doc</label></p>
+                        <p><label><input id="fecha-check" type="checkbox" value="">Incluir Fecha</label></p>
+                        <img class="col-md-6 col-md-offset-3" id="mini_firma" src="{{ profile_form.instance.firma.url }}">
+                        <small class="col-md-offset-3"><a href="{% url 'update_profile' %}">Configurar firma</a></small>
+                    </div>
+                <br/>
+                <h4 class="col-md-offset-3">CONTRAFIRMA</h4>
+                    <div class="input-group">
+                      <span class="input-group-btn">
+                        <button id="add-signature" class="btn btn-default" type="button">Incluir</button>
+                      </span>
+                      <input id="contrafirma" type="text" class="form-control" placeholder="Contrafirmante">
+                    </div>
+                <br/>
             </div>
         </div>
 </body>
@@ -112,4 +130,42 @@
 </div>
 </form>
 <script language="javascript" src="/static/js/docsonline.js"></script>
+<script language="javascript">
+user_first_name = "{{ user.first_name }}"
+user_last_name = "{{ user.last_name }}"
+image_url = "{{ profile_form.instance.firma.url }}"
+var d = new Date();
+var strDate = d.getDate() + "/" + (d.getMonth()+1) + "/" + d.getFullYear() 
+
+
+$("#firma-check").change(function() {
+    if ($(this).is(':checked')) {
+        $('#completar-text').append(
+            "<table id='firma'><tr><td id='parte1_firma'><img style='width: 200px; height: 100px' id='signature' src=" + image_url + "></img></td><td id='parte2_firma' style='width: 50%'></td></tr><tr><td id='parte1_nombre'><p>Nombre: " + user_first_name + " " + user_last_name + "</p></td><td id='parte2_nombre'></td> </tr> <tr> <td id='parte1_fecha'></td> <td id='parte2_fecha'></td> </tr> </table>");
+    } else{
+        $('#firma').remove();
+    }
+});
+
+$("#fecha-check").change(function() {
+    if ($(this).is(':checked')) {
+        $('#parte1_fecha').html("<p id='fecha1'>Fecha: " + strDate + "</p>");
+    } else{
+        $('#fecha1').remove();
+        $('#fecha2').remove();
+    }
+});
+
+$("#add-signature").click(function() {
+    var contranombre = $('#contrafirma').val();
+    if ($('#firma-check').is(':checked')) {
+        $('#parte2_nombre').html("<p>Nombre: " + contranombre + "</p>");
+        $('#parte2_fecha').html("<p id='fecha2'>Fecha: </p>");
+    } else{
+        $('#parte2_nombre').html("<p>Nombre: " + contranombre + "</p>");
+    }
+});
+
+
+</script>
 {% endblock %}

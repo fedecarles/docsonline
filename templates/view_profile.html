@@ -24,31 +24,35 @@
     <div id="doclist" class="col-md-9">
         <input type="text" class="search form-control" placeholder="Buscar"/>
         <br/>
+        <div class="col-md-12 col-md-offset-4">
+            <ul id="paginator" class="pagination"></ul>
+        </div>
         <ul class="list">
         <br/>
         <hr/>
        {% for row in public_detail %}
-            <div class="col-md-8">
-             <li><p class="docitem"><a href="/plantillas/{{ row.doc_id }}">{{ row.title }}</a></p>
-                 <p>{{ row.description }}<p/>
-                 <footer>
-                     <small>Actualizado por 
-                         <a href="{% url 'view_profile' id=row.user_id%}">{{ row.user }}</a> el {{ row.creation_date }}<br>
-                     </small>
-                 <footer>
-                 {% for tag in row.tags.all %}
-                      <a class="tag" href="{% url 'view_profile_tags' id=uuid tag=tag %}">{{ tag }}</a>
-                 {% endfor %}
-                 <br/>
-                 <hr/>
-             </div>
-             <div class="col-md-4">
-                 {% ratings row %}
-             </div>
-             </li>
+            <div class="col-md-10">
+                <li class="doc-item">
+                    <div class="col-md-10">
+                        <p class="docdata"><a href="/plantillas/{{ row.doc_id }}">{{ row.title }}</a></p>
+                        <p>{{ row.description }}<p/>
+                    </div>
+                    <div class="col-md-offset-10">
+                        {% ratings row icon_height=16 icon_width=16 %}
+                    </div>
+                    <div class="doc-item-footer">
+                        <p><small>Actualizado por 
+                            <a href="{% url 'view_profile' id=row.user_id%}">{{ row.user }}</a> el {{ row.creation_date }}</p>
+                        {% for tag in row.tags.all %}
+                             <a class="tag" href="{% url 'view_profile_tags' id=uuid tag=tag %}">{{ tag }}</a>
+                        {% endfor %}
+                        </small>
+                    <div>
+                </li>
+                <br/>
+            </div>
         {% endfor %}
         </ul>
-        <ul id="paginator" class="pagination"></ul>
     </div>
     <div class="tags col-md-3">
         {% for tag in tag_names %}
@@ -59,7 +63,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
     var docList = new List('doclist', { 
-        valueNames: ['docitem'],
+        valueNames: ['docdata'],
         page: 10,
         pagination: true
     });

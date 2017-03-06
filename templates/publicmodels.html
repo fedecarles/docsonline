@@ -10,51 +10,54 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	</head>
-	<body>
-<div class="col-md-12">
-    <h2>Docs Públicos</h2>
-    <div id="doclist" class="col-md-9">
-        <input type="text" class="search form-control" placeholder="Buscar"/>
-        <br/>
-        <ul class="list">
-        <br/>
-        <hr/>
-       {% for row in public_detail %}
-            <div class="col-md-8">
-             <li>
-                 <p class="docitem"><a href="/viewdoc/{{ row.doc_id }}">{{ row.title }}</a></p>
-                 <p>{{ row.description }}<p/>
-                 <footer>
-                     <small>Actualizado por 
-                         <a href="{% url 'view_profile' id=row.user_id%}">{{ row.user }}</a> el {{ row.creation_date }}<br>
-                     </small>
-                 <footer>
-                 {% for tag in row.tags.all %}
-                     <a class="tag" href="tag/{{ tag }}">{{ tag }}</a>
-                 {% endfor %}
-                 <br/>
-                 <hr/>
+<body>
+    <div class="col-md-12">
+        <h2>Docs Públicos</h2>
+        <div id="doclist" class="col-md-9">
+            <input type="text" class="search form-control" placeholder="Buscar"/>
+            <br/>
+            <div class="col-md-12 col-md-offset-6">
+                <ul id="paginator" class="pagination"></ul>
             </div>
-            <div class="col-md-4">
-                {% ratings row %}
-            </div>
-            </li>
-        {% endfor %}
-        </ul>
-        <br/>
-        <ul id="paginator" class="pagination"></ul>
+            <ul class="list">
+            <br/>
+            <hr/>
+           {% for row in public_detail %}
+                <div class="col-md-8 col-md-offset-3">
+                    <li class="doc-item">
+                       <div class="col-md-10">
+                           <p class="docdata"><a href="/viewdoc/{{ row.doc_id }}">{{ row.title }}</a></p>
+                           <p>{{ row.description }}<p/>
+                       </div>
+                       <div class="col-md-offset-10">
+                           {% ratings row icon_height=16 icon_width=16 %}
+                       </div>
+                       <div class="doc-item-footer">
+                           <p><small>Actualizado por 
+                               <a href="{% url 'view_profile' id=row.user_id%}">{{ row.user }}</a> el {{ row.creation_date }}</p>
+                           {% for tag in row.tags.all %}
+                               <a class="tag" href="tag/{{ tag }}">{{ tag }}</a>
+                           {% endfor %}
+                           </small>
+                       </div>
+                    </li>
+                    <br/>
+                </div>
+            {% endfor %}
+            </ul>
+            <br/>
+        </div>
+        <div class="tags col-md-2">
+            {% for tag in tag_names %}
+            <a class="tag" href="{% url 'publicmodels' tag=tag %}">{{ tag }}</a>
+            {% endfor %}
+        </div >
     </div>
-    <div class="tags col-md-2">
-        {% for tag in tag_names %}
-        <a class="tag" href="{% url 'publicmodels' tag=tag %}">{{ tag }}</a>
-        {% endfor %}
-    </div >
-</div>
 </body>
 <script type="text/javascript">
 $(document).ready(function(){
     var docList = new List('doclist', { 
-        valueNames: ['docitem'],
+        valueNames: ['docdata'],
         page: 10,
         pagination: true
     });

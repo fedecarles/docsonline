@@ -21,7 +21,12 @@ import time
 
 
 def home(request):
-    return render(request, "home.html")
+    latest = plantillaModel.objects.all().order_by('-creation_date')[:5]
+    context = {
+        'latest': latest,
+        'tag_names': [i.name for i in Tag.objects.all()[:5]]
+    }
+    return render(request, "home.html", context)
 
 
 @login_required
@@ -30,16 +35,21 @@ def plantillas(request, doc_id=None):
     or delete them, only if the user owns the instance.
     The view takes a doc_id (uuid) parameter which is either provided on the url
     or if there is None, created on the spot."""
+    user = request.user
+    profile = user.profile
+    profile_form = userProfileForm(instance=profile)
     if doc_id is None:
         form = plantillaForm(request.POST or None)
         context = {
             "form": form,
+            "profile_form": profile_form,
         }
     else:
         instance = plantillaModel.objects.get(doc_id=doc_id)
         form = plantillaForm(request.POST or None, instance=instance)
         context = {
             "form": form,
+            "profile_form": profile_form,
         }
         if instance.is_owner(request.user):
             pass
@@ -94,7 +104,10 @@ def CreateDraft(request, text=None, output=None):
                                                  body {
                                                          font-family: arial;
                                                          font-size: 12px;
-                                                         }"""))])
+                                                         }
+                                                 #parte2 {
+                                                     margin-left: 20%;
+                                                     }"""))])
 
     response.write(file_object.getvalue())
     file_object.close()
@@ -187,7 +200,8 @@ def update_profile(request):
     profile = user.profile
     if request.method == 'POST':
         user_form = userForm(request.POST, instance=user)
-        profile_form = userProfileForm(request.POST, instance=profile)
+        profile_form = userProfileForm(request.POST, request.FILES,
+                                       instance=profile)
         if all([user_form.is_valid(), profile_form.is_valid()]):
             user_form.save()
             profile_form.save()

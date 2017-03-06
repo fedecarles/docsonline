@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contratos Online</title>
+    <title>Docs Online</title>
     <!-- Bootstrap Core CSS -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"/>
@@ -28,6 +28,17 @@
     <style type="text/css">
         body{
             background-color: #F7F7F7;
+            min-height: 100%;
+        }
+        html{
+            position: relative;
+            min-height: 100%;
+        }
+        #main-icon{
+            width: 150px;
+            height: 20px;
+            background-repeat:no-repeat;
+            background-size: contain;
         }
         .note-toolbar.panel-heading{
             background-color: white;
@@ -194,6 +205,35 @@
     #paginator{
         display: block;
     }
+    #disclaimer{
+        font-size: 12px;
+        font-style: italic;
+        font-family: Century;
+    }
+    #footer{
+        clear: both;
+        position: relative;
+        z-index: 10;
+        height: 5em;
+        margin-top: 1em;
+    }
+    #signature{
+        width: 300px;
+        height: 150px;
+        margin: 1em;
+    }
+    #mini_firma{
+        height: 100px;
+        border: solid 0.5px rgba(168, 168, 168, 0.5);
+    }
+    .doc-item{
+        background-color: white;
+        border: solid 0.5px rgba(168, 168, 168, 0.5);
+        padding: 5px;
+    }
+    .doc-item-footer{
+        margin-top: 5%;
+    }
     </style>
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -215,7 +255,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="{% url 'home' %}">Inicio</a>
+                <a class="navbar-brand page-scroll" href="{% url 'home' %}">
+                    <img src="/static/images/docs_online_black.svg" id="main-icon"/>
+                </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -252,5 +294,19 @@
     </nav>
     {% block content %}
     {% endblock %}
+    <!-- Footer -->
+    <section id="footer">
+    <hr/>
+        <div class="row">
+            <div class="col-md-12">
+                <br/>
+                <p id="disclaimer" class="col-md-2"><strong>Aclaración:</strong>El contenido de DocsOnline NO debe ser considerado como consejo o consultoría legal y su uso no generá derechos u obligaciones entre DocsOnline y los Usuarios ni entre los Usuarios entre sí. El uso de DocsOnline no reemplaza ni intenta reemplazar el uso de abogados calificados.</p>
+            <div class="col-md-5 col-md-offset-3">
+                <p><a href="/viewdoc/d95c1de0-6">Términos y Condiciones</a></p>
+                <p><a href="/viewdoc/5be5538d-8">Política de Privacidad</a></p>
+            </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
