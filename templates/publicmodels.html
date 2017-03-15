@@ -3,25 +3,19 @@
 {% load ratings %}
 {% block title %}Docs Públicos{% endblock %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="es">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	</head>
-<body>
+<div id="main-body">
     <div class="col-md-12">
-        <h2>Docs Públicos</h2>
         <div id="doclist" class="col-md-9">
-            <input type="text" class="search form-control" placeholder="Buscar"/>
+            <div class="col-md-10 col-md-offset-2">
+                <h2>Docs Públicos</h2>
+                <input type="text" class="search form-control" placeholder="Buscar"/>
+            </div>
             <br/>
             <div class="col-md-12 col-md-offset-6">
                 <ul id="paginator" class="pagination"></ul>
             </div>
             <ul class="list">
             <br/>
-            <hr/>
            {% for row in public_detail %}
                 <div class="col-md-8 col-md-offset-3">
                     <li class="doc-item">
@@ -29,7 +23,7 @@
                            <p class="docdata"><a href="/viewdoc/{{ row.doc_id }}">{{ row.title }}</a></p>
                            <p>{{ row.description }}<p/>
                        </div>
-                       <div class="col-md-offset-10">
+                       <div class="col-md-offset-9">
                            {% ratings row icon_height=16 icon_width=16 %}
                        </div>
                        <div class="doc-item-footer">
@@ -47,13 +41,14 @@
             </ul>
             <br/>
         </div>
+        <br/>
         <div class="tags col-md-2">
             {% for tag in tag_names %}
             <a class="tag" href="{% url 'publicmodels' tag=tag %}">{{ tag }}</a>
             {% endfor %}
         </div >
     </div>
-</body>
+</div>
 <script type="text/javascript">
 $(document).ready(function(){
     var docList = new List('doclist', { 

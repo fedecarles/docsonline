@@ -1,84 +1,85 @@
 {% extends "header.html" %} {% load bootstrap3 %}
 {% load ratings %}
 {% block content %}
-<br>
-<div class="container-fluid">
-    <div class="row- col-md-12">
-        <div id="left_side_fields" class="col-md-3">
-            <form method="POST" action=''>{% csrf_token show_label=False %}
-            <div class="col-md-offset-5">
-                <a class="toolbar-btn" href="{% url 'newdoc' doc_id=doc_id %}">
-                    <i class="fa fa-files-o fa-lg" aria-hidden="true" title="usar doc"></i>
+<div id="main-body">
+    <div class="container-fluid">
+        <div class="row- col-md-12">
+            <div id="left_side_fields" class="col-md-3">
+                <form method="POST" action=''>{% csrf_token show_label=False %}
+                <div class="col-md-offset-5">
+                    <a class="toolbar-btn" href="{% url 'newdoc' doc_id=doc_id %}">
+                        <i class="fa fa-files-o fa-lg" aria-hidden="true" title="usar doc"></i>
+                    </a>
+                </div>
+                </form>
+                <br/>
+                <br/>
+                <label>Título</label> 
+                {{ title }}
+                <br />
+                <br />
+                <label>Fecha</label> 
+                {{ date }}
+                <br />
+                <br />
+                <label>Descripción</label> 
+                {{ description }}
+                <br />
+                <br />
+                <label>Disponibilidad</label> 
+                {{ form.public.label }}
+                <br />
+                <br />
+                <label>Creador</label> 
+                {{ request.user }}
+                <br />
+                <br />
+                <label>Tags</label> 
+                {% for row in tags_data %}
+                {% for tag in row.tags.all %}
+                <span class="tag">{{ tag }}</span>
+                {% endfor %}
+                {% endfor %}
+                <label>Comparte este Doc</label>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank">
+                    <i class="fa fa-facebook-square fa-2x"></i>
+                </a>
+                <a href="https://plus.google.com/share?url={{ request.build_absolute_uri }}" target="_blank">
+                    <i class="fa fa-google-plus-square fa-2x" style="color:#D34836"></i>
+                </a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}" target="_blank">
+                    <i class="fa fa-linkedin-square fa-2x" style="color:#007bb6"></i>
+                </a>
+                <a href="https://twitter.com/home?status=Hola%2C%20este%20documento%20puede%20interesarte.%20%23docsonline%20{{ request.build_absolute_uri }}" target="_blank">
+                    <i class="fa fa-twitter-square fa-2x" style="color:#4099FF"></i>
                 </a>
             </div>
-            </form>
-            <br/>
-            <br/>
-            <label>Título</label> 
-            {{ title }}
-            <br />
-            <br />
-            <label>Fecha</label> 
-            {{ date }}
-            <br />
-            <br />
-            <label>Descripción</label> 
-            {{ description }}
-            <br />
-            <br />
-            <label>Disponibilidad</label> 
-            {{ form.public.label }}
-            <br />
-            <br />
-            <label>Creador</label> 
-            {{ request.user }}
-            <br />
-            <br />
-            <label>Tags</label> 
-            {% for row in tags_data %}
-            {% for tag in row.tags.all %}
-            <span class="tag">{{ tag }}</span>
-            {% endfor %}
-            {% endfor %}
-            <label>Comparte este Doc</label>
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank">
-                <i class="fa fa-facebook-square fa-2x"></i>
-            </a>
-            <a href="https://plus.google.com/share?url={{ request.build_absolute_uri }}" target="_blank">
-                <i class="fa fa-google-plus-square fa-2x" style="color:#D34836"></i>
-            </a>
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}" target="_blank">
-                <i class="fa fa-linkedin-square fa-2x" style="color:#007bb6"></i>
-            </a>
-            <a href="https://twitter.com/home?status=Hola%2C%20este%20documento%20puede%20interesarte.%20%23docsonline%20{{ request.build_absolute_uri }}" target="_blank">
-                <i class="fa fa-twitter-square fa-2x" style="color:#4099FF"></i>
-            </a>
-        </div>
-        <div id="rich_text" class="col-md-6">
-            <div id="text-background" class="col-md-12">
-            {{ text|safe }}
+            <div id="rich_text" class="col-md-6">
+                <div id="text-background" class="col-md-12">
+                {{ text|safe }}
+                </div>
             </div>
-        </div>
-        <div id="side_fields" class="col-md-3">
-            {% ratings instance %}
-            <p>Comentarios</p>
-            <form method="POST" action="">{% csrf_token %}
-                {% bootstrap_form comment_form %}
-                <input type="submit" value="Postear" class="btn btn-default"></input>
-
-            </form>
-            <hr/>
-            {% for comment in comments reversed %}
-            <div class="comments">
-                <blockquote>
-                    <p>{{ comment.content }}</p>
-                <footer>via {{comment.user}} hace {{ comment.timestamp|timesince }}</footer>
-                </blockquote>
-            <hr/>
+            <div id="side_fields" class="col-md-3">
+                {% ratings instance %}
+                <p>Comentarios</p>
+                <form method="POST" action="">{% csrf_token %}
+                    {% bootstrap_form comment_form %}
+                    <input type="submit" value="Postear" class="btn btn-default"></input>
+    
+                </form>
+                <hr/>
+                {% for comment in comments reversed %}
+                <div class="comments">
+                    <blockquote>
+                        <p>{{ comment.content }}</p>
+                    <footer>via {{comment.user}} hace {{ comment.timestamp|timesince }}</footer>
+                    </blockquote>
+                <hr/>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
+    </form>
 </div>
-</form>
 {% endblock %}

@@ -21,10 +21,10 @@ $('#id_summernote').summernote({
         ['fontsize', ['fontsize']],
         ['color', ['color']],
         ['para', ['ul', 'ol', 'paragraph']],
-        ['insert', ['picture']],
+        // ['insert', ['picture']],
         ['table', ['table']],
         ['addfieldbtn', ['addfieldbtn']],
-        ['view', ['codeview']],
+        // ['view', ['codeview']],
       ],
       buttons: {
           addfieldbtn: addfieldbtn,
@@ -74,7 +74,7 @@ $(document).on('click', function(){
 
     $('#genpdf').on('click', function(){
         $('#completar-text input').each(function(){                        
-            $(this).replaceWith('<span>' + $(this).val() + '</span>'); 
+            $(this).replaceWith('<span>' + $(this).val() + '</span> '); 
         });     
         texto = $('#completar-text').html()
         $('#id_summernote').summernote('code', texto);

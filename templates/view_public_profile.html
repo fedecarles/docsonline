@@ -2,62 +2,61 @@
 {% load bootstrap3 %}
 {% load static %}
 {% load ratings %}
-
 {% block title %} Actualizar Perfil {% endblock %}
 {% block content %}
-<div class="col-md-12">
-    <div class="col-md-2">
-        <h1 style="color: grey;">{{ username }}</h1>
-        <p>{{ nombre }} {{ apellido }}</p>
-        <p><i class="fa fa-envelope-o"></i> {{ email }}</p>
-        <p><i class="fa fa-circle-o"></i> {{ website }}</p>
-        <p><i class="fa fa-map-marker"></i> {{ lugar }}</p>
-        <p><i class="fa fa-child"></i> {{ bio }}</p>
-        <br/>
-        <form method="get" action="{% url 'update_profile' %}">
-        <input type="submit" class="btn btn-default" value="Actualizar Perfil"></input>
-        </form>
-        <br/>
-        <form method="get" action="{% url 'auth_password_change' %}">
-        <input type="submit" class="btn btn-default" value="Cambiar Contraseña"></input>
-        </form>
+<div id="main-body">
+    <div class="col-md-12">
+        <div class="col-md-2">
+            <h1 style="color: grey;">{{ username }}</h1>
+            <p>{{ nombre }} {{ apellido }}</p>
+            <p><i class="fa fa-envelope-o"></i> {{ email }}</p>
+            <p><i class="fa fa-circle-o"></i> {{ website }}</p>
+            <p><i class="fa fa-map-marker"></i> {{ lugar }}</p>
+            <p><i class="fa fa-child"></i> {{ bio }}</p>
+            <br/>
+            <form method="get" action="{% url 'update_profile' %}">
+            <input type="submit" class="btn btn-default" value="Actualizar Perfil"></input>
+            </form>
+            <br/>
+            <form method="get" action="{% url 'auth_password_change' %}">
+            <input type="submit" class="btn btn-default" value="Cambiar Contraseña"></input>
+            </form>
+        </div>
+        <div class="col-md-8">
+        <h1>Docs Creados</h1>
+        <div id="doclist" class="col-md-9">
+            <input type="text" class="search form-control" placeholder="Buscar"/>
+            <ul class="list">
+            <br/>
+            <hr/>
+            {% for row in public_detail %}
+                <div class="col-md-8">
+                 <li><p class="docitem"><a href="/viewdoc/{{ row.doc_id }}">{{ row.title }}</a></p>
+                     <p>{{ row.description }}<p/>
+                     <footer>
+                         <small>Actualizado por 
+                             <a href="{% url 'view_profile' id=row.user_id%}">{{ row.user }}</a> el {{ row.creation_date }}<br>
+                         </small>
+                     <footer>
+                     {% for tag in row.tags.all %}
+                          <a class="tag" href="{% url 'view_profile_tags' id=uuid tag=tag %}">{{ tag }}</a>
+                     {% endfor %}
+                     <br/>
+                     <hr/>
+                 </div>
+                 <div class="col-md-4">
+                     {% ratings row %}
+                 </div>
+                 </li>
+            {% endfor %}
+             </ul>
+             <ul class="pagination"></ul>
+        </div>
+        <div class="tags col-md-3">
+            {% for tag in tag_names %}
+            <a class="tag" href="{% url 'view_profile_tags' id=uuid tag=tag %}">{{ tag }}</a>
+            {% endfor %}
+        </div >
     </div>
-    <div class="col-md-8">
-    <h1>Docs Creados</h1>
-    <div id="doclist" class="col-md-9">
-        <input type="text" class="search form-control" placeholder="Buscar"/>
-        <ul class="list">
-        <br/>
-        <hr/>
-        {% for row in public_detail %}
-            <div class="col-md-8">
-             <li><p class="docitem"><a href="/viewdoc/{{ row.doc_id }}">{{ row.title }}</a></p>
-                 <p>{{ row.description }}<p/>
-                 <footer>
-                     <small>Actualizado por 
-                         <a href="{% url 'view_profile' id=row.user_id%}">{{ row.user }}</a> el {{ row.creation_date }}<br>
-                     </small>
-                 <footer>
-                 {% for tag in row.tags.all %}
-                      <a class="tag" href="{% url 'view_profile_tags' id=uuid tag=tag %}">{{ tag }}</a>
-                 {% endfor %}
-                 <br/>
-                 <hr/>
-             </div>
-             <div class="col-md-4">
-                 {% ratings row %}
-             </div>
-             </li>
-        {% endfor %}
-         </ul>
-         <ul class="pagination"></ul>
-    </div>
-    <div class="tags col-md-3">
-        {% for tag in tag_names %}
-        <a class="tag" href="{% url 'view_profile_tags' id=uuid tag=tag %}">{{ tag }}</a>
-        {% endfor %}
-    </div >
 </div>
-
-
 {% endblock %}

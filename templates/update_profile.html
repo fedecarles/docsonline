@@ -2,15 +2,17 @@
 {% load bootstrap3 %}
 {% block title %} Actualizar Perfil {% endblock %}
 {% block content %}
-<div class="col-md-4 col-md-offset-4">
-<h1>Actualiza tu perfil</h1>
-<form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
-    {% bootstrap_form user_form %}
-    {% bootstrap_form profile_form %}
-    <img id="signature" src="{{ profile_form.instance.firma.url }}">
-    <br/>
-    <input type="submit" class="btn btn-success" value="Guardar"></input>
-</form>
-</div>
+<div id="main-body">
+    <div class="col-md-4 col-md-offset-4">
+    <h1>Actualiza tu perfil</h1>
+    <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        {% bootstrap_form user_form %}
+        {% bootstrap_form profile_form %}
+        <img id="signature" src="{{ profile_form.instance.firma.url }}">
+        <br/>
+        <input type="submit" class="btn btn-success" value="Guardar"></input>
+    </form>
+    </div>
+</body>
 {% endblock %}
 

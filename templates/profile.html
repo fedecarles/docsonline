@@ -1,12 +1,12 @@
 {% extends "header.html" %} {% load bootstrap3 %}
 {% block content %}
 <br>
-<body>
-<form method="POST" action=''>{% csrf_token show_label=False %}
-<div class="panel panel-default">
-    <div class="panel-body" id="body-container">
-    </div>
+<div id="main-body">
+    <form method="POST" action=''>{% csrf_token show_label=False %}
+        <div class="panel panel-default">
+            <div class="panel-body" id="body-container">
+            </div>
+        </div>
+    </form>
 </div>
-</body>
-</form>
 {% endblock %}

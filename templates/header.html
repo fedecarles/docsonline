@@ -26,6 +26,18 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
     <style type="text/css">
+        @font-face {
+            font-family: BebasNeue;
+            src: url('/static/fonts/BebasNeue.otf');
+        }
+        @font-face {
+            font-family: LiberationSans-Regular;
+            src: url('/static/fonts/LIberationSans-Regular.ttf');
+        }
+        @font-face {
+            font-family: Roboto-Light;
+            src: url('/static/fonts/Roboto-Light.ttf');
+        }
         body{
             background-color: #F7F7F7;
             min-height: 100%;
@@ -33,6 +45,12 @@
         html{
             position: relative;
             min-height: 100%;
+        }
+        p{
+            font-family: Roboto-Light;
+        }
+        #main-body{
+            margin-top: 3%;
         }
         #main-icon{
             width: 150px;
@@ -208,8 +226,12 @@
     #disclaimer{
         font-size: 12px;
         font-style: italic;
-        font-family: Century;
     }
+    #disclaimer2{
+        font-size: 12px;
+        font-style: italic;
+    }
+
     #footer{
         clear: both;
         position: relative;
@@ -234,6 +256,51 @@
     .doc-item-footer{
         margin-top: 5%;
     }
+    .feature-title{
+        font-family: BebasNeue;
+        font-size: 3rem;
+        color: #777;
+        list-style-type: none;
+        cursor: default;
+    }
+    .feature-title:hover{
+        background-color: white;
+        border-color: #0409b3;
+    }
+    .features{
+        font-family: LiberationSans-Regular;
+        font-size: 16px;
+        padding: 10px;
+        text-align: justify;
+        background-color: white;
+        border-color: #0409b3;
+    }
+    #caracteristicas {
+        display: block;
+        position: relative;
+        top: -250px;
+        visibility: hidden;
+    }
+    #novedades{
+        height: 250px;
+        margin-top: 700px;
+        background-color: white;
+        margin-bottom: 100px;
+        padding: 1%;
+    }
+    #features-section{
+        height: 400px;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+    #docsgif{
+        width: 100%;
+    }
+    label{
+        font-family: BebasNeue;
+        font-size: 20px;
+    }
+    
     </style>
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -259,12 +326,17 @@
                     <img src="/static/images/docs_online_black.svg" id="main-icon"/>
                 </a>
             </div>
-
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
                     <li>
                         <a class="page-scroll" href="#contact">Contacto</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#caracteristicas">Caracteristicas</a>
+                    </li>
+                     <li>
+                        <a class="page-scroll" href="#novedades">Novedades</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -300,7 +372,7 @@
         <div class="row">
             <div class="col-md-12">
                 <br/>
-                <p id="disclaimer" class="col-md-2"><strong>Aclaración:</strong>El contenido de DocsOnline NO debe ser considerado como consejo o consultoría legal y su uso no generá derechos u obligaciones entre DocsOnline y los Usuarios ni entre los Usuarios entre sí. El uso de DocsOnline no reemplaza ni intenta reemplazar el uso de abogados calificados.</p>
+                <p id="disclaimer" class="col-md-4"><strong>Aclaración:</strong>El contenido de DocsOnline NO debe ser considerado como consejo o consultoría legal y su uso no generá derechos u obligaciones entre DocsOnline y los Usuarios ni entre los Usuarios entre sí. El uso de DocsOnline no reemplaza ni intenta reemplazar el uso de abogados calificados.</p>
             <div class="col-md-5 col-md-offset-3">
                 <p><a href="/viewdoc/d95c1de0-6">Términos y Condiciones</a></p>
                 <p><a href="/viewdoc/5be5538d-8">Política de Privacidad</a></p>

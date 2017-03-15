@@ -3,8 +3,7 @@
 <head>
     <script language="javascript" src="/static/js/docsonline.js"></script>
 </head>
-<body>
-<br/>
+<div id="main-body">
 <div class="container-fluid">
     <form method="POST" action=''>{% csrf_token show_label=False %}
         <div class="row col-md-12">
@@ -54,15 +53,16 @@
                     </button>
                 </div>
                 <br/>
-                <h4 class="col-md-offset-4">FIRMA</h4>
-                    <div class="checkbox">
-                        <p><label><input id="firma-check" type="checkbox" value="">Firmar Doc</label></p>
-                        <p><label><input id="fecha-check" type="checkbox" value="">Incluir Fecha</label></p>
+                <label class="col-md-offset-4">Firma</label>
+                    <div class="checkbox col-md-12">
+                        <p><input id="firma-check" type="checkbox" value="">Incluir Pie de Firma</p>
+                        <p><input id="digi-check" type="checkbox" value="">Incluir Firma Digitalizada</p>
+                        <p><input id="fecha-check" type="checkbox" value="">Incluir Fecha</p>
                         <img class="col-md-6 col-md-offset-3" id="mini_firma" src="{{ profile_form.instance.firma.url }}">
                         <small class="col-md-offset-3"><a href="{% url 'update_profile' %}">Configurar firma</a></small>
                     </div>
                 <br/>
-                <h4 class="col-md-offset-3">CONTRAFIRMA</h4>
+                <label class="col-md-offset-3">Contrafirma</label>
                     <div class="input-group">
                       <span class="input-group-btn">
                         <button id="add-signature" class="btn btn-default" type="button">Incluir</button>
@@ -72,7 +72,7 @@
                 <br/>
             </div>
         </div>
-</body>
+</div>
 <a href="#myModal" id="exportbtn" role="button" class="btn btn-large btn-primary" data-toggle="modal"></a>
 <!-- Modal HTML -->
 <div id="myModal" class="modal fade">
@@ -141,9 +141,17 @@ var strDate = d.getDate() + "/" + (d.getMonth()+1) + "/" + d.getFullYear()
 $("#firma-check").change(function() {
     if ($(this).is(':checked')) {
         $('#completar-text').append(
-            "<table id='firma'><tr><td id='parte1_firma'><img style='width: 200px; height: 100px' id='signature' src=" + image_url + "></img></td><td id='parte2_firma' style='width: 50%'></td></tr><tr><td id='parte1_nombre'><p>Nombre: " + user_first_name + " " + user_last_name + "</p></td><td id='parte2_nombre'></td> </tr> <tr> <td id='parte1_fecha'></td> <td id='parte2_fecha'></td> </tr> </table>");
+            "<table id='firma'><tr><td id='parte1_firma' style='height:100px; width:200px;'></td><td id='parte2_firma' style='width: 50%'></td></tr><tr><td id='parte1_nombre'><p>Nombre: " + user_first_name + " " + user_last_name + "</p></td><td id='parte2_nombre'></td> </tr> <tr> <td id='parte1_fecha'></td> <td id='parte2_fecha'></td> </tr> </table>");
     } else{
         $('#firma').remove();
+    }
+});
+
+$("#digi-check").change(function() {
+    if ($(this).is(':checked')) {
+        $('#parte1_firma').html("<img style='width: 200px; height: 100px' id='signature' src=" + image_url + "></img>");
+    } else{
+        $('#parte1_firma img').remove();
     }
 });
 

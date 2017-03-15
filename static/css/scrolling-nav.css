@@ -6,7 +6,7 @@
 
 @media(min-width:767px) {
     .navbar {
-        position: relative;
+        position: fixed;
         -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
         -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
         transition: background .5s ease-in-out,padding .5s ease-in-out;

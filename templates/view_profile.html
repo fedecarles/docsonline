@@ -4,61 +4,63 @@
 {% load ratings %}
 {% block title %} Actualizar Perfil {% endblock %}
 {% block content %}
-<div class="col-md-12">
-    <div class="col-md-2">
-        <h3 style="color: grey;">{{ username }}</h3>
-        <p>{{ nombre }} {{ apellido }}</p>
-        <p><i class="fa fa-envelope-o"></i> {{ email }}</p>
-        <p><i class="fa fa-circle-o"></i> {{ website }}</p>
-        <p><i class="fa fa-map-marker"></i> {{ lugar }}</p>
-        <br/>
-        {% if req_id == uuid %}
-        <a href="{% url 'update_profile' %}">Actualizar Perfil</a>
-        <hr/>
-        <a href="{% url 'auth_password_change' %}">Cambiar Contraseña</a>
-        <span></span>
-        {% endif %} 
-    </div>
-    <div class="col-md-10">
-    <h1>Mis Docs</h1>
-    <div id="doclist" class="col-md-9">
-        <input type="text" class="search form-control" placeholder="Buscar"/>
-        <br/>
-        <div class="col-md-12 col-md-offset-4">
-            <ul id="paginator" class="pagination"></ul>
+<div id=main-body>
+    <div class="col-md-12">
+        <div class="col-md-2">
+            <h3 style="color: grey;">{{ username }}</h3>
+            <p>{{ nombre }} {{ apellido }}</p>
+            <p><i class="fa fa-envelope-o"></i> {{ email }}</p>
+            <p><i class="fa fa-circle-o"></i> {{ website }}</p>
+            <p><i class="fa fa-map-marker"></i> {{ lugar }}</p>
+            <br/>
+            {% if req_id == uuid %}
+            <a href="{% url 'update_profile' %}">Actualizar Perfil</a>
+            <hr/>
+            <a href="{% url 'auth_password_change' %}">Cambiar Contraseña</a>
+            <span></span>
+            {% endif %} 
         </div>
-        <ul class="list">
-        <br/>
-        <hr/>
-       {% for row in public_detail %}
-            <div class="col-md-10">
-                <li class="doc-item">
-                    <div class="col-md-10">
-                        <p class="docdata"><a href="/plantillas/{{ row.doc_id }}">{{ row.title }}</a></p>
-                        <p>{{ row.description }}<p/>
-                    </div>
-                    <div class="col-md-offset-10">
-                        {% ratings row icon_height=16 icon_width=16 %}
-                    </div>
-                    <div class="doc-item-footer">
-                        <p><small>Actualizado por 
-                            <a href="{% url 'view_profile' id=row.user_id%}">{{ row.user }}</a> el {{ row.creation_date }}</p>
-                        {% for tag in row.tags.all %}
-                             <a class="tag" href="{% url 'view_profile_tags' id=uuid tag=tag %}">{{ tag }}</a>
-                        {% endfor %}
-                        </small>
-                    <div>
-                </li>
-                <br/>
+        <div class="col-md-10">
+        <h1>Mis Docs</h1>
+        <div id="doclist" class="col-md-9">
+            <input type="text" class="search form-control" placeholder="Buscar"/>
+            <br/>
+            <div class="col-md-12 col-md-offset-4">
+                <ul id="paginator" class="pagination"></ul>
             </div>
-        {% endfor %}
-        </ul>
+            <ul class="list">
+            <br/>
+            <hr/>
+           {% for row in public_detail %}
+                <div class="col-md-10">
+                    <li class="doc-item">
+                        <div class="col-md-9">
+                            <p class="docdata"><a href="/plantillas/{{ row.doc_id }}">{{ row.title }}</a></p>
+                            <p>{{ row.description }}<p/>
+                        </div>
+                        <div class="col-md-offset-9">
+                            {% ratings row icon_height=16 icon_width=16 %}
+                        </div>
+                        <div class="doc-item-footer">
+                            <p><small>Actualizado por 
+                                <a href="{% url 'view_profile' id=row.user_id%}">{{ row.user }}</a> el {{ row.creation_date }}</p>
+                            {% for tag in row.tags.all %}
+                                 <a class="tag" href="{% url 'view_profile_tags' id=uuid tag=tag %}">{{ tag }}</a>
+                            {% endfor %}
+                            </small>
+                        <div>
+                    </li>
+                    <br/>
+                </div>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="tags col-md-3">
+            {% for tag in tag_names %}
+            <a class="tag" href="{% url 'view_profile_tags' id=uuid tag=tag %}">{{ tag }}</a>
+            {% endfor %}
+        </div >
     </div>
-    <div class="tags col-md-3">
-        {% for tag in tag_names %}
-        <a class="tag" href="{% url 'view_profile_tags' id=uuid tag=tag %}">{{ tag }}</a>
-        {% endfor %}
-    </div >
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
