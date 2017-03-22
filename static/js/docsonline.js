@@ -35,14 +35,6 @@ $('#id_summernote').summernote({
 
 });
 
-$('#add_field').on('click',function(e){
-    placeholder = $('#addfieldname').val();
-    $('.note-editable').focus();  
-    pasteHtmlAtCaret('<span class="hl">' + placeholder + '</span> ');
-    $('#addfieldbtn').modal('toggle');
-    e.preventDefault(); 
-});
-
 $(document).ready(function(){
     $('#id_summernote').summernote('code');
 
@@ -74,7 +66,7 @@ $(document).on('click', function(){
 
     $('#genpdf').on('click', function(){
         $('#completar-text input').each(function(){                        
-            $(this).replaceWith('<span>' + $(this).val() + '</span> '); 
+            $(this).replaceWith('<span>' + $(this).val() + '</span>'); 
         });     
         texto = $('#completar-text').html()
         $('#id_summernote').summernote('code', texto);

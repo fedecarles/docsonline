@@ -40,6 +40,7 @@
                     {% bootstrap_field form.summernote show_label=False %}
                 </div>
                 <div id="completar" class="tab-pane fade">
+                    <br/>
                     <div id="completar-text"></div>
                 </div>
             </div>
@@ -53,19 +54,38 @@
                     </button>
                 </div>
                 <br/>
+                <br/>
+                <br/>
+                <label class="col-md-offset-3">Variables</label>
+                    <div class="input-group">
+                      <span class="input-group-btn">
+                          <button id="add_variable" class="btn btn-default" type="button">+</button>
+                      </span>
+                      <input id="addfieldname" type="text" class="form-control" placeholder="Variable">
+                    </div>
+                <br/>
                 <label class="col-md-offset-4">Firma</label>
-                    <div class="checkbox col-md-12">
-                        <p><input id="firma-check" type="checkbox" value="">Incluir Pie de Firma</p>
-                        <p><input id="digi-check" type="checkbox" value="">Incluir Firma Digitalizada</p>
-                        <p><input id="fecha-check" type="checkbox" value="">Incluir Fecha</p>
-                        <img class="col-md-6 col-md-offset-3" id="mini_firma" src="{{ profile_form.instance.firma.url }}">
+                    <div class="control-group col-md-12">
+                        <label class="control control--checkbox">
+                            <input id="firma-check" type="checkbox"/><p>Incluir Pie de Firma</p>
+                            <div class="control__indicator"></div>
+                        </label>
+                        <label class="control control--checkbox">
+                            <input id="digi-check" type="checkbox"/><p>Incluir Firma Digitalizada</p>
+                            <div class="control__indicator"></div>
+                        </label>
+                        <label class="control control--checkbox">
+                            <input id="fecha-check" type="checkbox"/><p>Incluir Fecha</p>
+                            <div class="control__indicator"></div>
+                        </label>
+                        <img class="col-md-10 col-md-offset-1" id="mini_firma" src="{{ profile_form.instance.firma.url }}">
                         <small class="col-md-offset-3"><a href="{% url 'update_profile' %}">Configurar firma</a></small>
                     </div>
                 <br/>
                 <label class="col-md-offset-3">Contrafirma</label>
                     <div class="input-group">
                       <span class="input-group-btn">
-                        <button id="add-signature" class="btn btn-default" type="button">Incluir</button>
+                        <button id="add-signature" class="btn btn-default" type="button">+</button>
                       </span>
                       <input id="contrafirma" type="text" class="form-control" placeholder="Contrafirmante">
                     </div>
@@ -80,21 +100,6 @@
         <div class="modal-content">
             <div class="modal-body">
                 <input type="submit" id="genpdf" class="btn btn-default" name="genpdf" value="PDF" title="pdf"/></input>
-            </div>
-        </div>
-    </div>
-</div>
-<a href="#addfieldbtn" id="addfield" role="button" class="btn btn-large btn-primary" data-toggle="modal"></a>
-<!-- Modal HTML -->
-<div id="addfieldbtn" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <label>Nombre del campo<label>
-                <input id="addfieldname" class="form-control" name="addfieldname"></input>
-                <button type="button" id="add_field" class="form-control" name="addfieldname">
-                    OK
-                </button>
             </div>
         </div>
     </div>
@@ -174,6 +179,12 @@ $("#add-signature").click(function() {
     }
 });
 
+$('#add_variable').on('click',function(e){
+    e.preventDefault(); 
+    placeholder = $('#addfieldname').val();
+    $('.note-editable').focus();  
+    pasteHtmlAtCaret('<span class="hl">' + placeholder + '</span>&nbsp;');
+});
 
 </script>
 {% endblock %}

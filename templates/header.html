@@ -50,7 +50,7 @@
             font-family: Roboto-Light;
         }
         #main-body{
-            margin-top: 3%;
+            margin-top: 5%;
         }
         #main-icon{
             width: 150px;
@@ -282,8 +282,7 @@
         visibility: hidden;
     }
     #novedades{
-        height: 250px;
-        margin-top: 700px;
+        margin-top: 100px;
         background-color: white;
         margin-bottom: 100px;
         padding: 1%;
@@ -300,7 +299,88 @@
         font-family: BebasNeue;
         font-size: 20px;
     }
-    
+    .control-group {
+        display: inline-block;
+        margin: 10px;
+        text-align: left;
+        vertical-align: top;
+        background: #fff;
+    }
+    .control {
+        font-size: 18px;
+        position: relative;
+        display: block;
+        margin-bottom: 15px;
+        padding-left: 30px;
+        cursor: pointer;
+    }
+    .control input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+    .control__indicator {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        width: 20px;
+        height: 20px;
+        background: #e7e7e7;
+        border-radius: 5px;
+    }
+
+    /* Hover and focus states */
+    .control:hover input ~ .control__indicator,
+    .control input:focus ~ .control__indicator {
+        background: #ccc;
+    }
+
+    /* Checked state */
+    .control input:checked ~ .control__indicator {
+        background: #9d9d9d;
+    }
+
+    /* Hover state whilst checked */
+    .control:hover input:not([disabled]):checked ~ .control__indicator,
+    .control input:checked:focus ~ .control__indicator {
+        background: #9d9d9d;
+    }
+
+    /* Disabled state */
+    .control input:disabled ~ .control__indicator {
+        pointer-events: none;
+        opacity: .6;
+        background: #e6e6e6;
+    }
+
+    /* Check mark */
+    .control__indicator:after {
+        position: absolute;
+        display: none;
+        content: '';
+    }
+
+    /* Show check mark */
+    .control input:checked ~ .control__indicator:after {
+        display: block;
+    }
+
+    /* Checkbox tick */
+    .control--checkbox .control__indicator:after {
+        top: 4px;
+        left: 8px;
+        width: 3px;
+        height: 8px;
+        transform: rotate(45deg);
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+    }
+
+    /* Disabled tick colour */
+    .control--checkbox input:disabled ~ .control__indicator:after {
+        border-color: #7b7b7b;
+    }
+
     </style>
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -369,14 +449,12 @@
     <!-- Footer -->
     <section id="footer">
     <hr/>
-        <div class="row">
-            <div class="col-md-12">
-                <br/>
-                <p id="disclaimer" class="col-md-4"><strong>Aclaración:</strong>El contenido de DocsOnline NO debe ser considerado como consejo o consultoría legal y su uso no generá derechos u obligaciones entre DocsOnline y los Usuarios ni entre los Usuarios entre sí. El uso de DocsOnline no reemplaza ni intenta reemplazar el uso de abogados calificados.</p>
+        <div class="col-md-10">
+            <br/>
+            <p id="disclaimer" class="col-md-4"><strong>Aclaración: </strong>El contenido de DocsOnline NO debe ser considerado como consejo o consultoría legal y su uso no generá derechos u obligaciones entre DocsOnline y los Usuarios ni entre los Usuarios entre sí. El uso de DocsOnline no reemplaza ni intenta reemplazar el uso de abogados calificados.</p>
             <div class="col-md-5 col-md-offset-3">
                 <p><a href="/viewdoc/d95c1de0-6">Términos y Condiciones</a></p>
                 <p><a href="/viewdoc/5be5538d-8">Política de Privacidad</a></p>
-            </div>
             </div>
         </div>
     </section>
