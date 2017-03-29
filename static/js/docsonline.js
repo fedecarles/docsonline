@@ -1,18 +1,3 @@
-// Create summernote custom Export button.
-
-var addfieldbtn = function (context) {
-  var ui = $.summernote.ui;
-  // create button
-  var button = ui.button({
-    contents: '<i class="fa fa-plus-square-o"/>',
-    tooltip: 'Crear campo',
-    click: function () {
-        $('#addfield').click();
-    }
-  });
-  return button.render();
-}
-
 // Load Summernote
 $('#id_summernote').summernote({
     toolbar: [
@@ -23,12 +8,8 @@ $('#id_summernote').summernote({
         ['para', ['ul', 'ol', 'paragraph']],
         // ['insert', ['picture']],
         ['table', ['table']],
-        ['addfieldbtn', ['addfieldbtn']],
         // ['view', ['codeview']],
       ],
-      buttons: {
-          addfieldbtn: addfieldbtn,
-        },
       height: 650,
       maximumFileSize: '1mb',
       maximumFileSizeError: 'Maximum file size exceeded.',

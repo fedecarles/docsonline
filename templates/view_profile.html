@@ -11,7 +11,7 @@
             <p>{{ nombre }} {{ apellido }}</p>
             <p><i class="fa fa-envelope-o"></i> {{ email }}</p>
             <p><i class="fa fa-circle-o"></i> {{ website }}</p>
-            <p><i class="fa fa-map-marker"></i> {{ lugar }}</p>
+            <p><i class="fa fa-map-marker"></i> {{ pais }}</p>
             <br/>
             {% if req_id == uuid %}
             <a href="{% url 'update_profile' %}">Actualizar Perfil</a>
@@ -21,7 +21,6 @@
             {% endif %} 
         </div>
         <div class="col-md-10">
-        <h1>Mis Docs</h1>
         <div id="doclist" class="col-md-9">
             <input type="text" class="search form-control" placeholder="Buscar"/>
             <br/>

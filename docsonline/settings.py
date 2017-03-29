@@ -169,3 +169,7 @@ EMAIL_HOST_USER = os.environ["EMAIL"]
 EMAIL_HOST_PASSWORD = os.environ["PASSWORD"]
 # EMAIL_HOST_PASSWORD = ""
 EMAIL_USE_TLS = True
+
+# Upload image size limit (2.5mb)
+CONTENT_TYPES = ['image', 'video']
+MAX_UPLOAD_SIZE = "1000000"

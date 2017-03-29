@@ -26,6 +26,8 @@
                 {% bootstrap_field form.title show_label=False %}
                 <label>Descripción</label> 
                 {% bootstrap_field form.description show_label=False %}
+                <label>País</label> 
+                {% bootstrap_field form.pais show_label=False %}
                 <label>Disponibilidad</label> 
                 {% bootstrap_field form.public show_label=False %}
                 <label>Tags</label> 
@@ -46,9 +48,6 @@
             </div>
             <div id="side_fields" class="col-md-3">
                 <div class="col-md-offset-5">
-                    <button class="toolbar-btn" type="button" id="pencil" name="pencil" value="" title="pencil"/>
-                        <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>    
-                    </button>
                     <button class="toolbar-btn" type="submit" id="genpdf" name="genpdf" value="" title="generar pdf"/>
                         <i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i>
                     </button>
@@ -142,6 +141,13 @@ image_url = "{{ profile_form.instance.firma.url }}"
 var d = new Date();
 var strDate = d.getDate() + "/" + (d.getMonth()+1) + "/" + d.getFullYear() 
 
+$(document).ready(function(){
+    if (!$('#firma-check').is(':checked')) {
+        $('#fecha-check').attr( "disabled", "disabled" ); 
+        $('#digi-check').attr( "disabled", "disabled" ); 
+        $('#contrafirma').attr( "disabled", "disabled" ); 
+    } 
+});
 
 $("#firma-check").change(function() {
     if ($(this).is(':checked')) {
@@ -172,8 +178,12 @@ $("#fecha-check").change(function() {
 $("#add-signature").click(function() {
     var contranombre = $('#contrafirma').val();
     if ($('#firma-check').is(':checked')) {
-        $('#parte2_nombre').html("<p>Nombre: " + contranombre + "</p>");
-        $('#parte2_fecha').html("<p id='fecha2'>Fecha: </p>");
+        if ($('#fecha-check').is(':checked')){
+            $('#parte2_nombre').html("<p>Nombre: " + contranombre + "</p>");
+            $('#parte2_fecha').html("<p id='fecha2'>Fecha: </p>");
+        } else {
+            $('#parte2_nombre').html("<p>Nombre: " + contranombre + "</p>");
+        }
     } else{
         $('#parte2_nombre').html("<p>Nombre: " + contranombre + "</p>");
     }
@@ -184,6 +194,18 @@ $('#add_variable').on('click',function(e){
     placeholder = $('#addfieldname').val();
     $('.note-editable').focus();  
     pasteHtmlAtCaret('<span class="hl">' + placeholder + '</span>&nbsp;');
+});
+
+$("#firma-check").click(function() {
+    if ($('#firma-check').is(':checked')) {
+        $('#fecha-check').removeAttr('disabled'); 
+        $('#digi-check').removeAttr('disabled'); 
+        $('#contrafirma').removeAttr('disabled'); 
+    } else {
+        $('#fecha-check').attr( "disabled", "disabled" ); 
+        $('#digi-check').attr( "disabled", "disabled" ); 
+        $('#contrafirma').attr( "disabled", "disabled" ); 
+    }
 });
 
 </script>

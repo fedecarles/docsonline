@@ -8,11 +8,17 @@
     <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
         {% bootstrap_form user_form %}
         {% bootstrap_form profile_form %}
+        {% if profile_form.instance.firma.url is not None %}
         <img id="signature" src="{{ profile_form.instance.firma.url }}">
+        {% else %}
+        <img id="signature" src="">
+        {% endif %}
         <br/>
         <input type="submit" class="btn btn-success" value="Guardar"></input>
     </form>
     </div>
+    <br/>
+    <br/>
 </body>
 {% endblock %}
 

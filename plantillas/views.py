@@ -157,6 +157,7 @@ def viewdoc(request, doc_id=None):
         "text": instance.summernote,
         "date": instance.creation_date,
         "title": instance.title,
+        "pais": instance.pais,
         "description": instance.description,
         "tags_data": filter_tags,
         "comments": comments,
@@ -232,7 +233,7 @@ def view_profile(request, id=None, tag=None):
         "apellido": userdata.last_name,
         "email": userdata.email,
         "website": userprofile.website,
-        "lugar": userprofile.lugar,
+        "pais": userprofile.pais,
         "public_detail": public_data,
         "tag_names": [i.name for i in Tag.objects.all()]
     }

@@ -2,7 +2,6 @@ from django import forms
 from .models import plantillaModel
 from .models import User
 from .models import userProfile
-# from django_summernote.widgets import SummernoteInplaceWidget
 
 
 class plantillaForm(forms.ModelForm):
@@ -19,7 +18,7 @@ class plantillaForm(forms.ModelForm):
         }
 
         fields = ('summernote', 'title', 'description',
-                  'public', 'tags')
+                  'pais', 'public', 'tags')
 
 
 class userForm(forms.ModelForm):

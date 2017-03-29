@@ -129,7 +129,7 @@
             padding: 10px;
             border: solid 0.5px rgba(168, 168, 168, 0.5);
             background-color: white;
-            height: 700px;
+            height: 740px;
         }
         #rich_text{
             font-family: 'arial';
@@ -144,7 +144,7 @@
             padding: 10px;
             border: solid 0.5px rgba(168, 168, 168, 0.5);
             background-color: white;
-            height: 700px;
+            height: 740px;
             overflow: scroll;
         }
         #side_fields::-webkit-scrollbar {
@@ -202,6 +202,7 @@
         border: solid 0.5px rgba(168, 168, 168, 0.5);
         height: 700px;
         overflow: scroll;
+        padding: 20px;
     }
     #text-background::-webkit-scrollbar {
         width: 1em;
@@ -220,9 +221,6 @@
         background-color: #0409b3;
         border-color: #0409b3;
     }
-    #paginator{
-        display: block;
-    }
     #disclaimer{
         font-size: 12px;
         font-style: italic;
@@ -236,7 +234,7 @@
         clear: both;
         position: relative;
         z-index: 10;
-        height: 5em;
+        height: 200px;
         margin-top: 1em;
     }
     #signature{
@@ -409,15 +407,16 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a class="page-scroll" href="#contact">Contacto</a>
-                    </li>
+                    {% if request.get_full_path == "/" %}
                     <li>
                         <a class="page-scroll" href="#caracteristicas">Caracteristicas</a>
                     </li>
                      <li>
                         <a class="page-scroll" href="#novedades">Novedades</a>
                     </li>
+                    {% else %}
+                    <li></li>
+                    {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
@@ -455,7 +454,10 @@
             <div class="col-md-5 col-md-offset-3">
                 <p><a href="/viewdoc/d95c1de0-6">Términos y Condiciones</a></p>
                 <p><a href="/viewdoc/5be5538d-8">Política de Privacidad</a></p>
+                <p>Contacto: <a href="mailto:docsonlineapp@gmail.com" target="_top">docsonlineapp@gmail.com</a></p>
             </div>
+            <br/>
+            <br/>
         </div>
     </section>
 </body>
