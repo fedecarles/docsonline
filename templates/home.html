@@ -31,14 +31,13 @@
     <section id="features-section" class="col-md-8 col-md-offset-2">
         <br/>
         <div>
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <ul>
                     <li class="feature-title" id="feature1-title">¿Qué es DocsOnline?</li>
                     <li class="feature-title" id="feature2-title">¿Cómo funciona?</li>
-                    <li class="feature-title" id="feature3-title">¿Es gratis?</li>
                 </ul>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-7">
                 <div class="features" id="feature1">
                     <p>DocsOnline es una plataforma para
                     encontrar, crear y compartir cualquier tipo de documentos como contratos,
@@ -69,10 +68,6 @@
                     esto no incluye ningún cifrado ni certificado oficial que
                     tenga validéz de firma digital.</p>
                 </div>
-                <div class="features" id="feature3">
-                    <p>¡Si, crear una cuenta en DocsOnline es totalmente gratis!
-                    <i class="fa fa-smile-o fa-lg" aria-hidden="true"></i></p>
-                </div>
             </div>
         </div>
         <br/>
@@ -99,7 +94,6 @@
 $(document).ready(function(){
     $('#feature1').hide();
     $('#feature2').hide();
-    $('#feature3').hide();
 });
 
 $('#feature1-title').on('mouseover', function(){
@@ -111,11 +105,6 @@ $('#feature2-title').on('mouseover', function(){
     $('.features').hide();
     $('#feature2').show();
     $('#docsgif').show().attr('src', '/static/images/docsonline.gif?rnd=' +Math.random()+'');
-});
-
-$('#feature3-title').on('mouseover', function(){
-    $('.features').hide();
-    $('#feature3').show();
 });
 
 </script>
