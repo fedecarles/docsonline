@@ -221,9 +221,9 @@ def view_profile(request, id=None, tag=None):
     userdata = User.objects.get(pk=id)
     userprofile = userProfile.objects.get(user_id=id)
     if tag is None:
-        public_data = plantillaModel.objects.filter(user_id=id).order_by('-creation_date')
+        public_data = plantillaModel.objects.filter(user_id=id, public=1).order_by('-creation_date')
     else:
-        public_data = plantillaModel.objects.filter(user_id=id, tags__name=tag).order_by('-creation_date')
+        public_data = plantillaModel.objects.filter(user_id=id, public=1, tags__name=tag).order_by('-creation_date')
 
     context = {
         "uuid": str(id),
